@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gen Z With The Nation | #GenZWithTheNation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0e1a;
+    --ink-2:#11172b;
+    --saffron:#ff7a29;
+    --saffron-2:#ffb04a;
+    --green:#1c8a4b;
+    --gold:#ffcf4d;
+    --white:#f7f5f0;
+    --muted:#9aa0b4;
+    --line: rgba(247,245,240,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--white);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Fraunces',serif;}
+  .display{font-family:'Anton',sans-serif; letter-spacing:0.5px;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--saffron); color:var(--ink);}
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--saffron); box-shadow:0 0 0 4px rgba(255,122,41,0.18);}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px; border-radius:999px; font-weight:700; font-size:16px;
+    border:none; cursor:pointer; font-family:'Poppins',sans-serif;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(95deg, var(--saffron), var(--saffron-2));
+    color:#1a0d00;
+    box-shadow:0 10px 30px -8px rgba(255,122,41,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 36px -8px rgba(255,122,41,0.7);}
+  .btn-ghost{
+    background:transparent; color:var(--white); border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--white); background:rgba(255,255,255,0.05);}
+
+  /* ---------- marquee ribbon ---------- */
+  .ribbon{
+    background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    overflow:hidden; padding:11px 0; position:relative;
+  }
+  .ribbon-track{
+    display:flex; width:max-content; gap:40px;
+    animation:scroll 28s linear infinite;
+  }
+  .ribbon-track span{
+    font-family:'Anton',sans-serif; font-size:14.5px; letter-spacing:1.5px;
+    display:flex; align-items:center; gap:14px; color:var(--muted);
+    text-transform:uppercase;
+  }
+  .ribbon-track span b{color:var(--gold);}
+  .ribbon-track span::after{content:"●"; font-size:6px; color:var(--saffron); margin-left:14px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,26,0.82); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Anton',sans-serif; font-size:19px; letter-spacing:0.5px;}
+  .brand .tri{width:22px; height:22px; border-radius:6px; background:linear-gradient(180deg,var(--saffron) 0 33%, var(--white) 33% 66%, var(--green) 66% 100%); flex:none;}
+  .navlinks{display:flex; gap:30px; font-size:14px; font-weight:500; color:var(--muted);}
+  .navlinks a:hover{color:var(--white);}
+  @media(max-width:860px){.navlinks{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; padding:96px 0 70px; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(255,122,41,0.22), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 5% 30%, rgba(28,138,75,0.20), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; position:relative;}
+  @media(max-width:940px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{
+    font-family:'Fraunces',serif; font-weight:600; font-style:normal;
+    font-size:clamp(38px, 5.4vw, 68px); line-height:1.06; margin:18px 0 22px;
+  }
+  .hero h1 .accent{
+    background:linear-gradient(95deg, var(--saffron), var(--gold));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{
+    font-size:18px; line-height:1.75; color:#d7d5cd; max-width:560px; margin-bottom:34px; font-weight:400;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px;}
+  .stat-row{display:flex; gap:34px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Anton',sans-serif; font-size:25px; color:var(--gold);}
+  .stat span{font-size:12px; color:var(--muted); letter-spacing:0.4px;}
+
+  /* phone stack — signature element */
+  .phone-stack{position:relative; height:520px; display:flex; align-items:center; justify-content:center;}
+  .phone{
+    position:absolute; width:230px; height:410px; border-radius:34px;
+    background:linear-gradient(160deg, var(--ink-2), #060811);
+    border:3px solid rgba(255,255,255,0.08);
+    box-shadow:0 40px 70px -20px rgba(0,0,0,0.7);
+    overflow:hidden;
+  }
+  .phone .glow{position:absolute; inset:0; opacity:0.9;}
+  .phone-a{transform:rotate(-11deg) translate(-64px, 18px); z-index:1;}
+  .phone-a .glow{background:linear-gradient(200deg, rgba(255,122,41,0.55), rgba(10,14,26,0.9) 60%);}
+  .phone-b{transform:rotate(0deg) translate(0,-14px); z-index:3; width:250px; height:445px; border-color:rgba(255,207,77,0.35);}
+  .phone-b .glow{background:linear-gradient(200deg, rgba(28,138,75,0.5), rgba(10,14,26,0.92) 55%);}
+  .phone-c{transform:rotate(12deg) translate(70px, 22px); z-index:2;}
+  .phone-c .glow{background:linear-gradient(200deg, rgba(255,207,77,0.4), rgba(10,14,26,0.9) 60%);}
+  .phone-tag{
+    position:absolute; bottom:16px; left:16px; right:16px;
+    font-size:11.5px; font-weight:600; color:var(--white);
+    display:flex; align-items:center; gap:6px;
+  }
+  .phone-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--saffron);}
+  .phone-play{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.14);
+    border:1.5px solid rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(4px);
+  }
+  .phone-play::after{content:""; border-left:14px solid var(--white); border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:4px;}
+
+  /* ---------- sections ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:680px; margin-bottom:48px;}
+  .section-head h2{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(28px,3.6vw,42px); margin-top:14px; line-height:1.18;}
+  .section-head p{color:#c9c7bf; font-size:16px; line-height:1.7; margin-top:16px; font-weight:400;}
+
+  .about{background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-copy h2{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,3.4vw,36px); margin:14px 0 20px; line-height:1.22;}
+  .about-copy p{color:#d3d1c9; line-height:1.85; font-size:16px; margin-bottom:16px; font-weight:400;}
+  .theme-label{font-size:12px; font-weight:700; letter-spacing:1.5px; color:var(--gold); margin-bottom:14px; text-transform:uppercase;}
+  .theme-list{list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:6px;}
+  .theme-list li{
+    display:flex; gap:14px; align-items:flex-start; font-size:15px; color:var(--white);
+    padding:16px 18px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,0.02);
+    font-weight:400;
+  }
+  .theme-list li .ic{
+    flex:none; width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg, var(--saffron), var(--green));
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+
+  /* why grid */
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:880px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{
+    padding:28px 24px; border-radius:20px; border:1px solid var(--line);
+    background:linear-gradient(160deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .why-card:hover{transform:translateY(-6px); border-color:rgba(255,207,77,0.4);}
+  .why-card .num{font-family:'Anton',sans-serif; font-size:13px; color:var(--saffron); letter-spacing:1px;}
+  .why-card h3{font-size:18px; margin:12px 0 8px; font-weight:700;}
+  .why-card p{font-size:14px; color:var(--muted); line-height:1.6; font-weight:400;}
+
+  /* timeline */
+  .timeline{background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .tl-track{display:flex; gap:0; position:relative; margin-top:20px; overflow-x:auto; padding-bottom:10px;}
+  .tl-step{flex:1; min-width:190px; position:relative; padding:0 18px 0 0;}
+  .tl-step .bar{height:4px; border-radius:4px; background:linear-gradient(90deg,var(--saffron),var(--green)); margin-bottom:18px;}
+  .tl-step:last-child .bar{background:linear-gradient(90deg,var(--saffron),transparent);}
+  .tl-step h4{font-size:15px; font-weight:700; margin-bottom:6px;}
+  .tl-step p{font-size:13px; color:var(--muted); line-height:1.55; font-weight:400;}
+  .tl-step .tag{
+    display:inline-block; margin-bottom:10px; font-size:11px; font-weight:700; letter-spacing:1px;
+    color:var(--gold); text-transform:uppercase;
+  }
+
+  /* how to participate */
+  .how-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  @media(max-width:900px){.how-grid{grid-template-columns:1fr;}}
+  .how-copy h2{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,3.4vw,36px); margin:14px 0 26px; line-height:1.22;}
+  .steps{display:flex; flex-direction:column;}
+  .step{display:flex; gap:20px; padding:22px 0; border-bottom:1px solid var(--line);}
+  .step:last-child{border-bottom:none;}
+  .step .n{
+    flex:none; width:44px; height:44px; border-radius:50%; font-family:'Anton',sans-serif;
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+    background:rgba(255,122,41,0.12); color:var(--saffron); border:1px solid rgba(255,122,41,0.35);
+  }
+  .step h4{font-weight:700; font-size:16px; margin-bottom:4px;}
+  .step p{font-size:14px; color:var(--muted); line-height:1.6; font-weight:400;}
+
+  /* submission form mock */
+  .form-card{
+    border-radius:26px; border:1px solid var(--line); background:rgba(255,255,255,0.02);
+    padding:32px; position:sticky; top:100px;
+  }
+  .form-card h3{font-size:20px; margin-bottom:4px; font-weight:700;}
+  .form-card .sub{font-size:13px; color:var(--muted); margin-bottom:22px;}
+  .fgroup{margin-bottom:16px;}
+  .fgroup label{display:block; font-size:12px; font-weight:600; color:var(--muted); margin-bottom:7px;}
+  .fgroup input, .fgroup .upload{
+    width:100%; padding:13px 14px; border-radius:12px; border:1px solid var(--line);
+    background:rgba(255,255,255,0.03); color:var(--white); font-size:14px; font-family:'Poppins',sans-serif;
+  }
+  .fgroup input::placeholder{color:#6b7086;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .consent{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--muted); margin:18px 0 22px; line-height:1.6;}
+  .consent input{margin-top:3px;}
+  .form-card .btn{width:100%; justify-content:center;}
+
+  /* community wall */
+  .wall-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media(max-width:900px){.wall-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.wall-grid{grid-template-columns:1fr;}}
+  .wall-card{
+    border-radius:18px; overflow:hidden; position:relative; aspect-ratio:9/13.5;
+    border:1px solid var(--line);
+  }
+  .wall-card .bg{position:absolute; inset:0;}
+  .wc1 .bg{background:linear-gradient(155deg,#ff7a29,#3a1200);}
+  .wc2 .bg{background:linear-gradient(155deg,#1c8a4b,#04150b);}
+  .wc3 .bg{background:linear-gradient(155deg,#ffcf4d,#3a2900);}
+  .wc4 .bg{background:linear-gradient(155deg,#3a4b8a,#050818);}
+  .wall-card .meta{position:absolute; left:14px; right:14px; bottom:14px;}
+  .wall-card .meta b{font-size:14px; display:block; font-weight:600;}
+  .wall-card .meta span{font-size:12px; color:rgba(255,255,255,0.75);}
+  .wall-card .dur{position:absolute; top:12px; left:12px; font-size:11px; background:rgba(0,0,0,0.4); padding:3px 8px; border-radius:6px;}
+
+  /* faq / details */
+  .details-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:880px){.details-grid{grid-template-columns:1fr;}}
+  .detail-card{padding:26px; border-radius:18px; border:1px solid var(--line); background:rgba(255,255,255,0.02);}
+  .detail-card h4{font-size:14px; letter-spacing:0.6px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; font-weight:700;}
+  .detail-card ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .detail-card li{font-size:14.5px; color:#d7d5cd; line-height:1.5; padding-left:16px; position:relative; font-weight:400;}
+  .detail-card li::before{content:"—"; position:absolute; left:0; color:var(--muted);}
+
+  /* footer cta */
+  .final-cta{text-align:center; padding:100px 24px; position:relative; overflow:hidden; border-top:1px solid var(--line);}
+  .final-cta::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(255,122,41,0.25), transparent 70%);
+  }
+  .final-cta h2{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4.6vw,50px); position:relative; margin-bottom:18px; line-height:1.18;}
+  .final-cta p{color:#d3d1c9; font-size:16.5px; margin-bottom:34px; position:relative; font-weight:400;}
+  .hashtag-big{
+    font-family:'Anton',sans-serif; font-size:clamp(22px,3.6vw,36px); letter-spacing:1px;
+    background:linear-gradient(95deg,var(--saffron),var(--gold),var(--green));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-top:44px; position:relative;
+  }
+
+  footer{border-top:1px solid var(--line); padding:34px 0;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;}
+  footer p{font-size:13px; color:var(--muted);}
+  .foot-links{display:flex; gap:22px; font-size:13px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand"><span class="tri"></span> Gen Z With The Nation</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#why">Why Join</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#submit">Submit a Reel</a>
+      <a href="#wall">Community Wall</a>
+    </div>
+    <a href="#submit" class="btn btn-primary" style="padding:11px 22px; font-size:14px;">Submit a Reel</a>
+  </nav>
+</header>
+
+<div class="ribbon">
+  <div class="ribbon-track">
+    <span>#GenZWithTheNation</span>
+    <span>Prize pool up to <b>₹51,000</b></span>
+    <span>Show your love for India this Independence Day</span>
+    <span>#GenZWithTheNation</span>
+    <span>Prize pool up to <b>₹51,000</b></span>
+    <span>Show your love for India this Independence Day</span>
+    <span>#GenZWithTheNation</span>
+    <span>Prize pool up to <b>₹51,000</b></span>
+    <span>Show your love for India this Independence Day</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Reel Making Competition · Independence Day Edition</span>
+      <h1>Your reel.<br>Your <span class="accent">India</span>.<br>Your <span class="accent">story</span>.</h1>
+      <p class="lede">This Independence Day, show your love for your country through your creativity. Make a reel, tag <strong>#GenZWithTheNation</strong>, and stand a chance to win cash prizes, an official feature, and a bigger audience for your work.</p>
+      <div class="hero-ctas">
+        <a href="#submit" class="btn btn-primary">Submit Your Reel →</a>
+        <a href="#about" class="btn btn-ghost">See Themes &amp; Rules</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>12,400+</b><span>REELS SUBMITTED</span></div>
+        <div class="stat"><b>28</b><span>STATES REPRESENTED</span></div>
+        <div class="stat"><b>3.1Cr+</b><span>TOTAL VIEWS</span></div>
+        <div class="stat"><b>₹5L</b><span>PRIZE POOL</span></div>
+      </div>
+    </div>
+    <div class="phone-stack">
+      <div class="phone phone-a"><div class="glow"></div><div class="phone-tag"><span class="dot"></span>@armaan.vlogs</div></div>
+      <div class="phone phone-b"><div class="glow"></div><div class="phone-play"></div><div class="phone-tag"><span class="dot"></span>@priya.creates · #GenZWithTheNation</div></div>
+      <div class="phone phone-c"><div class="glow"></div><div class="phone-tag"><span class="dot"></span>@rahul.speaks</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">About the Movement</span>
+      <h2>One reel, one story of what the nation means to you.</h2>
+      <p>Gen Z With The Nation is a nationwide creative movement celebrating the spirit of patriotism through the lens of young India. It invites creators to share stories, ideas, and moments that reflect their love for the nation — in their own voice, their own style.</p>
+      <p>There's no single right format. Your reel could be a story, a dance, a vlog, a spoken-word piece, or simply you talking to camera — as long as it's honest and it's yours.</p>
+    </div>
+    <div>
+      <p class="theme-label">Themes to build your reel around</p>
+      <ul class="theme-list">
+        <li><span class="ic">🇮🇳</span> My India, my identity — what the nation means to you</li>
+        <li><span class="ic">🎖️</span> A salute to our armed forces and security personnel</li>
+        <li><span class="ic">❤️</span> A moment that made you feel proud to be Indian</li>
+        <li><span class="ic">🤝</span> Real stories of service — to your community or country</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why Participate</span>
+      <h2>More than a prize. A platform for your work.</h2>
+      <p>Making the reel is the easy part. Getting it in front of the right audience — that's what we take care of.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="num">01</div><h3>Showcase your craft</h3><p>Tell your story your way — in your language, your style, your format.</p></div>
+      <div class="why-card"><div class="num">02</div><h3>Reach a wider audience</h3><p>Every entry gets amplified through cross-promotion on our official handles.</p></div>
+      <div class="why-card"><div class="num">03</div><h3>Get officially featured</h3><p>Shortlisted reels are shared and celebrated across our official social channels.</p></div>
+      <div class="why-card"><div class="num">04</div><h3>Win cash prizes</h3><p>A prize pool of up to ₹51,000 is set aside for the top entries.</p></div>
+      <div class="why-card"><div class="num">05</div><h3>Earn a certificate</h3><p>Every participant receives a certificate; top creators get a formal letter of recognition.</p></div>
+      <div class="why-card"><div class="num">06</div><h3>Join a growing network</h3><p>Connect with thousands of young creators across India telling the same story, differently.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline" id="timeline">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Competition Timeline</span>
+      <h2>The full schedule, at a glance.</h2>
+    </div>
+    <div class="tl-track">
+      <div class="tl-step"><div class="bar"></div><span class="tag">Step 1</span><h4>Registration Opens</h4><p>The portal goes live — start submitting your entries right away.</p></div>
+      <div class="tl-step"><div class="bar"></div><span class="tag">Step 2</span><h4>Last Date for Submission</h4><p>Submit your reel link before 15th August.</p></div>
+      <div class="tl-step"><div class="bar"></div><span class="tag">Step 3</span><h4>Jury Evaluation</h4><p>Every entry is reviewed for creativity, originality, and the message it carries.</p></div>
+      <div class="tl-step"><div class="bar"></div><span class="tag">Step 4</span><h4>Public Showcase</h4><p>Shortlisted reels go up on the Community Wall and official handles.</p></div>
+      <div class="tl-step"><div class="bar"></div><span class="tag">Step 5</span><h4>Winners Announcement</h4><p>Winners are announced and prizes are distributed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap how-grid">
+    <div class="how-copy">
+      <span class="eyebrow">How to Participate</span>
+      <h2>Five steps, and your reel is live.</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><h4>Create a reel</h4><p>Pick a theme from above and shoot your reel — anywhere between 15 and 90 seconds.</p></div></div>
+        <div class="step"><div class="n">2</div><div><h4>Upload it</h4><p>Post it on Instagram, Facebook, or YouTube Shorts — wherever you already create.</p></div></div>
+        <div class="step"><div class="n">3</div><div><h4>Tag #GenZWithTheNation</h4><p>The hashtag needs to be in your caption — that's how we track and verify your entry.</p></div></div>
+        <div class="step"><div class="n">4</div><div><h4>Submit your reel link</h4><p>Fill in your details in the form and paste the link to your reel.</p></div></div>
+        <div class="step"><div class="n">5</div><div><h4>Wait for results</h4><p>That's it. We'll take it from here — keep an eye out for the winners' announcement.</p></div></div>
+      </div>
+    </div>
+
+    <div id="submit" class="form-card">
+      <h3>Submit Your Entry</h3>
+      <p class="sub">Takes about 2 minutes to fill out</p>
+      <div class="row2">
+        <div class="fgroup"><label>Full Name</label><input placeholder="e.g. Ankita Sharma"></div>
+        <div class="fgroup"><label>Mobile Number</label><input placeholder="10-digit number"></div>
+      </div>
+      <div class="row2">
+        <div class="fgroup"><label>City / State</label><input placeholder="e.g. Bhopal, Madhya Pradesh"></div>
+        <div class="fgroup"><label>Instagram / YouTube Handle</label><input placeholder="@yourusername"></div>
+      </div>
+      <div class="fgroup"><label>Reel Link</label><input placeholder="Paste your reel's link here"></div>
+      <div class="fgroup"><label>Or upload your reel (optional)</label><div class="upload">Click to choose a file — MP4, up to 200MB</div></div>
+      <div class="consent"><input type="checkbox"><span>I confirm this reel is my original work, that it includes the #GenZWithTheNation hashtag, and I grant permission for it to be shared on official handles.</span></div>
+      <button class="btn btn-primary">Submit Entry</button>
+    </div>
+  </div>
+</section>
+
+<section class="wall" id="wall">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Community Wall</span>
+      <h2>Featured entries so far.</h2>
+      <p>Every reel here shows its view count and creator — the stronger the reel, the bigger the reach.</p>
+    </div>
+    <div class="wall-grid">
+      <div class="wall-card wc1"><div class="bg"></div><span class="dur">0:42</span><div class="meta"><b>@rahul.speaks</b><span>240K views</span></div></div>
+      <div class="wall-card wc2"><div class="bg"></div><span class="dur">0:58</span><div class="meta"><b>@priya.creates</b><span>180K views</span></div></div>
+      <div class="wall-card wc3"><div class="bg"></div><span class="dur">1:12</span><div class="meta"><b>@armaan.vlogs</b><span>360K views</span></div></div>
+      <div class="wall-card wc4"><div class="bg"></div><span class="dur">0:37</span><div class="meta"><b>@simran.talks</b><span>96K views</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="details">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Good to Know</span>
+      <h2>Eligibility, prizes, and ground rules.</h2>
+    </div>
+    <div class="details-grid">
+      <div class="detail-card">
+        <h4>Eligibility</h4>
+        <ul>
+          <li>Open to creators aged 13–30</li>
+          <li>Reel duration: 15–90 seconds</li>
+          <li>Hindi, English, or any regional language</li>
+          <li>Original content only — no plagiarism</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Rewards</h4>
+        <ul>
+          <li>Top entry: up to ₹51,000 cash</li>
+          <li>Runner-up and category prizes</li>
+          <li>Certificate for every participant</li>
+          <li>Feature on official social handles</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Ground Rules</h4>
+        <ul>
+          <li>One creator may submit multiple entries</li>
+          <li>No hate speech, abuse, or offensive language</li>
+          <li>#GenZWithTheNation must appear in the caption</li>
+          <li>Decisions of the jury are final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;">Independence Day Edition</span>
+    <h2>This Independence Day,<br>show your love for your country.</h2>
+    <p>Make a reel. Say what's on your mind. And win a cash prize — with nothing but your own creativity.</p>
+    <a href="#submit" class="btn btn-primary" style="font-size:17px; padding:18px 38px;">Submit Your Reel Now →</a>
+    <div class="hashtag-big">#GenZWithTheNation</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Gen Z With The Nation. A creative movement for every young Indian who loves their country.</p>
+    <div class="foot-links">
+      <a href="#about">Themes</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#submit">Submit a Reel</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

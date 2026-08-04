@@ -1,10 +1,8 @@
 "use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, Play, Share2, Star, Upload, Video, ScrollText, Users, ShieldAlert, Globe } from "lucide-react";
+import { ArrowRight, Play, CheckCircle2, Upload, Video, Star, Target, Zap, Clock, Users, ShieldAlert, Award, FileText, Check } from "lucide-react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -16,276 +14,369 @@ const stagger = {
 };
 
 export default function Home() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen overflow-hidden bg-white text-[#1a1512] font-sans selection:bg-[#C4532B] selection:text-white">
+      
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-4 md:px-8 lg:px-12 flex items-center justify-start border-b-4 border-[#1a1512] overflow-hidden">
-        {/* Subtle Grid Background */}
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#1a151215_1px,transparent_1px),linear-gradient(to_bottom,#1a151215_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-        
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-          className="max-w-[1400px] mx-auto w-full relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
-        >
-          {/* Left: Massive Typography */}
-          <div className="lg:col-span-8 relative">
-            {/* Neo-brutalist Starburst Sticker */}
-            <motion.div variants={fadeIn} className="absolute -top-16 right-0 md:right-12 hidden sm:flex w-32 h-32 z-10 hover:rotate-180 transition-transform duration-700 items-center justify-center">
-              <div className="absolute inset-0 bg-[#C4532B] rotate-45 border-4 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512]"></div>
-              <div className="absolute inset-0 bg-[#C4532B] rotate-0 border-4 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512]"></div>
-              <span className="relative z-10 text-[#F5F2EB] font-black text-xl uppercase tracking-widest text-center leading-none rotate-[-15deg] drop-shadow-md">
-                100%<br/>RAW
-              </span>
+      <section className="relative py-8 md:py-12 px-6 md:px-12 flex items-center justify-start border-b-4 border-[#1a1512] bg-[#F5F2EB] overflow-hidden">
+
+        <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          
+          {/* Hero Content */}
+          <div className="lg:col-span-7 flex flex-col gap-8">
+            <motion.div variants={fadeIn} className="inline-flex items-center rounded-none bg-[#F5F2EB] px-5 py-2 text-sm text-[#1a1512] font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512] transform -rotate-1 w-max">
+              Reel Making Competition · Independence Day Edition
             </motion.div>
             
-            <motion.div variants={fadeIn} className="inline-flex items-center rounded-none bg-[#C4532B] px-5 py-2 text-sm text-[#F5F2EB] mb-8 font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512] transform -rotate-2">
-              A Movement by the Youth
-            </motion.div>
-            
-            <motion.h1 variants={fadeIn} className="font-heading text-[5.5rem] sm:text-[8rem] md:text-[10rem] xl:text-[14rem] font-black tracking-[-0.05em] leading-[0.8] text-left uppercase relative z-20">
-              <span className="text-[#1a1512] block hover:text-[#2B6040] transition-colors duration-300 cursor-crosshair">GenZ</span>
-              <span className="block text-[#F5F2EB] hover:!text-[#C4532B] transition-colors duration-300 cursor-crosshair drop-shadow-[4px_4px_0_#1a1512]" style={{ WebkitTextStroke: '3px #1a1512' }}>With The</span>
-              <span className="text-[#2B6040] block italic lowercase hover:text-[#1a1512] transition-colors duration-300 cursor-crosshair">Nation.</span>
+            <motion.h1 variants={fadeIn} className="font-heading text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] font-black tracking-tighter leading-[0.95] uppercase relative z-10">
+              <span className="text-[#1a1512] block relative z-10">Your reel.</span>
+              <span className="block text-white drop-shadow-[4px_4px_0_#1a1512] relative z-10" style={{ WebkitTextStroke: '2.5px #1a1512' }}>Your India.</span>
+              <span className="text-[#2B6040] block drop-shadow-[4px_4px_0_#1a1512] relative z-10">Your story.</span>
             </motion.h1>
+
+            <motion.p variants={fadeIn} className="text-lg md:text-xl font-bold text-[#1a1512]/90 leading-relaxed max-w-2xl bg-white border-2 border-[#1a1512] p-5 shadow-[4px_4px_0_0_#1a1512] relative z-10">
+              This Independence Day, show your love for your country through your creativity. Make a reel, tag <strong className="text-[#C4532B]">#GenZWithTheNation</strong>, and stand a chance to win cash prizes, an official feature, and a bigger audience for your work.
+            </motion.p>
+            
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mt-4 relative z-10">
+              <a href="#submit" className="bg-[#C4532B] text-white px-8 py-4 border-2 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512] hover:shadow-[0_0_0_0_#1a1512] hover:translate-x-1 hover:translate-y-1 transition-all font-black uppercase text-base flex items-center justify-center gap-3">
+                Submit Your Reel <ArrowRight strokeWidth={3} className="w-5 h-5" />
+              </a>
+              <a href="#about" className="bg-white text-[#1a1512] px-8 py-4 border-2 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512] hover:shadow-[0_0_0_0_#1a1512] hover:translate-x-1 hover:translate-y-1 transition-all font-black uppercase text-base flex items-center justify-center">
+                See Themes & Rules
+              </a>
+            </motion.div>
+
+            {/* Stats Row */}
+            <motion.div variants={fadeIn} className="flex flex-wrap gap-6 mt-4 relative z-10">
+              {[
+                { val: "12,400+", label: "REELS SUBMITTED", color: "#C4532B" },
+                { val: "28", label: "STATES REP'D", color: "#2B6040" },
+                { val: "3.1Cr+", label: "TOTAL VIEWS", color: "#FFD600" },
+                { val: "₹5L", label: "PRIZE POOL", color: "#1a1512" }
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col border-l-4 pl-3" style={{ borderColor: s.color }}>
+                  <span className="font-heading font-black text-2xl md:text-3xl text-[#1a1512] uppercase leading-none mb-1">{s.val}</span>
+                  <span className="font-bold text-[10px] tracking-widest text-[#1a1512]/70 uppercase">{s.label}</span>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right: Brutalist Info Box */}
-          <motion.div variants={fadeIn} className="lg:col-span-4 flex flex-col relative z-20 mt-8 lg:mt-0">
-            <div className="bg-[#F5F2EB] border-4 border-[#1a1512] p-8 md:p-10 shadow-[12px_12px_0_0_#1a1512] transform rotate-2 hover:rotate-0 transition-transform duration-300">
-              <p className="text-2xl md:text-3xl font-bold text-[#1a1512] leading-tight mb-8">
-                Beyond Stereotypes. Beyond Labels. A digital revolution to reclaim our narrative.
-              </p>
+          {/* Phone Stack (Adapted Video Fan) */}
+          <motion.div variants={fadeIn} className="lg:col-span-5 relative h-[400px] flex items-center justify-center mt-8 lg:mt-0 perspective-1000">
+            <div className="relative w-full max-w-[240px] aspect-[9/16] mx-auto">
               
-              <div className="flex flex-col gap-5">
-                <Link href="/register">
-                  <Button size="lg" className="w-full rounded-none text-xl px-8 py-8 border-4 border-[#1a1512] bg-[#C4532B] hover:bg-[#1a1512] text-[#F5F2EB] shadow-[6px_6px_0_0_#1a1512] hover:shadow-[0px_0px_0_0_#1a1512] hover:translate-y-1.5 hover:translate-x-1.5 transition-all font-black uppercase tracking-widest">
-                    Join Campaign <ArrowRight className="ml-3 w-6 h-6 stroke-[3px]" />
-                  </Button>
-                </Link>
-                <Link href="/about">
-                  <Button variant="outline" size="lg" className="w-full rounded-none border-4 border-[#1a1512] text-[#1a1512] bg-[#F5F2EB] hover:bg-[#2B6040] hover:text-[#F5F2EB] text-xl px-8 py-8 shadow-[6px_6px_0_0_#1a1512] hover:shadow-[0px_0px_0_0_#1a1512] hover:translate-y-1.5 hover:translate-x-1.5 transition-all font-black uppercase tracking-widest">
-                    The Manifesto
-                  </Button>
-                </Link>
+              {/* Back Left Phone */}
+              <div onClick={() => setActiveVideo("/Video-2259.mp4")} className="absolute inset-0 bg-[#C4532B] border-4 border-[#1a1512] shadow-[-8px_12px_0_0_#1a1512] transform -rotate-12 -translate-x-16 translate-y-8 rounded-3xl overflow-hidden cursor-pointer hover:-translate-x-20 transition-transform">
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute bottom-4 left-4 bg-[#1a1512] text-white px-3 py-1 font-bold text-xs rounded-full border-2 border-white">@armaan.vlogs</div>
+              </div>
+
+              {/* Back Right Phone */}
+              <div onClick={() => setActiveVideo("/Video-2259.mp4")} className="absolute inset-0 bg-[#2B6040] border-4 border-[#1a1512] shadow-[8px_12px_0_0_#1a1512] transform rotate-12 translate-x-16 translate-y-8 rounded-3xl overflow-hidden cursor-pointer hover:translate-x-20 transition-transform">
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute bottom-4 left-4 bg-[#1a1512] text-white px-3 py-1 font-bold text-xs rounded-full border-2 border-white">@rahul.speaks</div>
+              </div>
+
+              {/* Front Main Phone */}
+              <div onClick={() => setActiveVideo("/Video-2259.mp4")} className="absolute inset-0 bg-[#1a1512] border-4 border-[#1a1512] shadow-[0px_20px_0_0_#1a1512] transform z-20 rounded-3xl overflow-hidden group cursor-pointer hover:-translate-y-4 transition-transform">
+                <video src="/Video-2259.mp4" className="absolute inset-0 w-full h-full object-cover opacity-90" autoPlay loop muted playsInline />
+                <div className="absolute inset-0 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border-2 border-white flex items-center justify-center">
+                    <Play className="w-8 h-8 fill-white text-white ml-1" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 z-20 bg-white text-[#1a1512] px-3 py-1 font-black text-xs rounded-full border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512]">
+                  @priya.creates · #GenZWithTheNation
+                </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Scrolling Marquee Divider */}
-      <div className="bg-[#1a1512] text-[#F5F2EB] py-5 border-b-4 border-[#1a1512] overflow-hidden whitespace-nowrap flex select-none">
-        <motion.div 
-          animate={{ x: ["0%", "-50%"] }} 
+      {/* Marquee Ribbon */}
+      <div className="bg-[#1a1512] text-[#F5F2EB] py-3 border-b-4 border-[#1a1512] overflow-hidden whitespace-nowrap flex select-none">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
-          className="font-heading font-black text-2xl md:text-3xl uppercase tracking-widest flex items-center gap-12"
+          className="font-heading font-black text-lg md:text-xl uppercase tracking-widest flex items-center gap-12"
         >
-          {Array(8).fill("RECLAIM THE NARRATIVE ✦ BEYOND STEREOTYPES ✦ YOUR VOICE MATTERS ✦").map((text, i) => (
-            <span key={i}>{text}</span>
+          {Array(8).fill("#GenZWithTheNation ✦ Prize pool up to ₹51,000 ✦ Show your love for India this Independence Day ✦").map((text, i) => (
+            <span key={i} dangerouslySetInnerHTML={{ __html: text.replace("₹51,000", "<span class='text-[#C4532B]'>₹51,000</span>") }}></span>
           ))}
         </motion.div>
       </div>
 
-      {/* The Movement Vision */}
-      <section className="py-24 border-b border-[#1a1512] bg-[#F5F2EB]">
-        <div className="container mx-auto px-4 md:px-12">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeIn}
-              className="space-y-6"
-            >
-              <h2 className="font-heading text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]">Our Vision.</h2>
-              <p className="text-2xl text-foreground/80 leading-relaxed font-medium">
-                We are not here to be called lazy, chronically online, or disconnected. We are here to ask questions, challenge outdated systems, and build a community that actually cares.
-              </p>
-              <p className="text-2xl text-foreground/80 leading-relaxed font-medium">
-                Build a platform for the young people who keep getting misunderstood. That's it. That's the mission. No sponsors. Just one large, stubborn, and highly aware generation.
-              </p>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeIn}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            >
-              <div className="bg-[#F5F2EB] border-2 border-[#1a1512] p-8 rounded-none space-y-4 hover:bg-[#1a1512] hover:text-[#F5F2EB] transition-colors group">
-                <Users className="w-10 h-10 text-[#1a1512] group-hover:text-[#F5F2EB] transition-colors" />
-                <h3 className="text-3xl font-black uppercase tracking-tighter">Community</h3>
-                <p className="text-lg opacity-80 font-medium">Built by creators, for creators. A safe space for real talk.</p>
-              </div>
-              <div className="bg-[#1a1512] text-[#F5F2EB] border-2 border-[#1a1512] p-8 rounded-none space-y-4 sm:mt-12 hover:bg-[#C4532B] transition-colors group">
-                <Globe className="w-10 h-10 text-[#F5F2EB]" />
-                <h3 className="text-3xl font-black uppercase tracking-tighter">Impact</h3>
-                <p className="text-lg opacity-90 font-medium">Taking our digital voices to make real-world changes.</p>
-              </div>
-            </motion.div>
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 md:px-12 border-b-4 border-[#1a1512] bg-[#F5F2EB]">
+        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16">
+          <div>
+            <div className="inline-flex items-center rounded-none bg-white px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512] mb-8">About the Movement</div>
+            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight mb-8">
+              One reel, one story of what the nation means to you.
+            </h2>
+            <p className="text-xl font-bold leading-relaxed mb-6">
+              Gen Z With The Nation is a nationwide creative movement celebrating the spirit of patriotism through the lens of young India. It invites creators to share stories, ideas, and moments that reflect their love for the nation — in their own voice, their own style.
+            </p>
+            <p className="text-xl font-bold leading-relaxed opacity-70">
+              There's no single right format. Your reel could be a story, a dance, a vlog, a spoken-word piece, or simply you talking to camera — as long as it's honest and it's yours.
+            </p>
+          </div>
+          <div>
+            <div className="font-black uppercase tracking-widest text-lg mb-6 flex items-center gap-3">
+              <Star className="text-[#C4532B] fill-[#C4532B]" /> Themes to build your reel around
+            </div>
+            <div className="flex flex-col gap-4">
+              {[
+                { icon: "🇮🇳", text: "My India, my identity — what the nation means to you" },
+                { icon: "🎖️", text: "A salute to our armed forces and security personnel" },
+                { icon: "❤️", text: "A moment that made you feel proud to be Indian" },
+                { icon: "🤝", text: "Real stories of service — to your community or country" }
+              ].map((theme, i) => (
+                <div key={i} className="flex items-center gap-4 bg-white border-2 border-[#1a1512] p-4 shadow-[4px_4px_0_0_#1a1512] hover:bg-[#C4532B] hover:text-white transition-colors group">
+                  <span className="text-3xl bg-[#F5F2EB] p-2 border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512] group-hover:shadow-[0_0_0_0_#1a1512]">{theme.icon}</span>
+                  <span className="font-bold text-lg">{theme.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* The Manifesto */}
-      <section className="py-32 bg-[#F5F2EB] border-b border-[#1a1512]">
-        <div className="container mx-auto px-4 md:px-12">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="mb-16"
-          >
-            <h2 className="font-heading text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6 leading-[0.9]">The Manifesto.</h2>
-            <p className="text-2xl text-foreground/80 max-w-3xl font-medium">
-              Read it once. Read it twice. Then send it to someone who needs to read it. These are our 5 core demands for a better future.
+      {/* Why Join Grid */}
+      <section id="why" className="py-24 px-6 md:px-12 border-b-4 border-[#1a1512] bg-white">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16 max-w-2xl">
+            <div className="inline-flex items-center rounded-none bg-[#C4532B] text-white px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512] mb-6">Why Participate</div>
+            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight mb-6">
+              More than a prize. A platform for your work.
+            </h2>
+            <p className="text-xl font-bold opacity-70">
+              Making the reel is the easy part. Getting it in front of the right audience — that's what we take care of.
             </p>
-          </motion.div>
+          </div>
 
-          <div className="space-y-0 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
-              { id: "01", title: "Mental Health is Health", desc: "Therapy and mental health resources must be integrated into every educational institution and workplace by default, not as a luxury." },
-              { id: "02", title: "End the Hustle Culture Toxic Loop", desc: "We demand fair wages, strict boundaries for working hours, and the eradication of unpaid internships that exploit youth labor." },
-              { id: "03", title: "Climate Accountability Now", desc: "Corporations must be held strictly accountable for their carbon footprint. Greenwashing will no longer be accepted as a PR strategy." },
-              { id: "04", title: "Transparent Education Reform", desc: "Curriculums must teach financial literacy, digital rights, and real-world survival skills, moving away from rote memorization." },
-              { id: "05", title: "Authentic Representation", desc: "We demand media and political representation that accurately reflects our diversity, rather than caricatures created by older generations." }
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex flex-col md:flex-row gap-6 md:gap-12 p-8 md:p-12 border-t-2 border-[#1a1512] hover:bg-[#1a1512] hover:text-[#F5F2EB] transition-colors group first:border-t-0"
-              >
-                <div className="text-6xl md:text-8xl font-heading font-black opacity-30 shrink-0 leading-none group-hover:opacity-100 transition-opacity group-hover:text-[#C4532B]">{item.id}</div>
-                <div>
-                  <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase leading-[0.9]">{item.title}</h3>
-                  <p className="text-xl md:text-2xl opacity-80 font-medium">{item.desc}</p>
-                </div>
-              </motion.div>
+              { num: "01", title: "Showcase your craft", desc: "Tell your story your way — in your language, your style, your format." },
+              { num: "02", title: "Reach a wider audience", desc: "Every entry gets amplified through cross-promotion on our official handles." },
+              { num: "03", title: "Get officially featured", desc: "Shortlisted reels are shared and celebrated across our official social channels." },
+              { num: "04", title: "Win cash prizes", desc: "A prize pool of up to ₹51,000 is set aside for the top entries." },
+              { num: "05", title: "Earn a certificate", desc: "Every participant receives a certificate; top creators get a formal letter of recognition." },
+              { num: "06", title: "Join a growing network", desc: "Connect with thousands of young creators across India telling the same story, differently." }
+            ].map((card, i) => (
+              <div key={i} className="bg-[#F5F2EB] border-4 border-[#1a1512] p-8 shadow-[6px_6px_0_0_#1a1512] hover:-translate-y-2 hover:shadow-[10px_10px_0_0_#C4532B] transition-all">
+                <div className="font-heading text-5xl font-black text-[#1a1512]/20 mb-4">{card.num}</div>
+                <h3 className="text-2xl font-black uppercase tracking-tight mb-3">{card.title}</h3>
+                <p className="font-bold opacity-80">{card.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Eligibility Section (Satirical) */}
-      <section className="py-24 border-b border-[#1a1512] bg-[#F5F2EB]">
-        <div className="container mx-auto px-4 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              className="text-center mb-16"
-            >
-              <h2 className="font-heading text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6 leading-[0.9]">Are you eligible to join?</h2>
-              <p className="text-2xl text-foreground/80 font-medium">
-                We do not check your background. We do, however, have four standards.
-              </p>
-            </motion.div>
+      {/* Timeline Section */}
+      <section id="timeline" className="py-24 px-6 md:px-12 border-b-4 border-[#1a1512] bg-[#2B6040] text-[#F5F2EB]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <div className="inline-flex items-center rounded-none bg-[#F5F2EB] text-[#1a1512] px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512] mb-6">Competition Timeline</div>
+            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight">
+              The full schedule,<br/>at a glance.
+            </h2>
+          </div>
 
-            <div className="space-y-4">
-              {[
-                { title: "REQ / 01 Misunderstood", desc: "Told you are 'always on your phone' while actually building a career online." },
-                { title: "REQ / 02 Chronically Online", desc: "You know the context of a meme within 5 seconds of seeing it." },
-                { title: "REQ / 03 Existentially Aware", desc: "Worried about the economy and the climate, but still finding time to laugh." },
-                { title: "REQ / 04 Can Rant Professionally", desc: "As long as the content is sharp, honest, and points at something that actually matters." }
-              ].map((req, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-transparent border-2 border-[#1a1512] hover:bg-[#C4532B] hover:text-[#F5F2EB] hover:border-[#C4532B] transition-colors group"
-                >
-                  <div>
-                    <h4 className="font-bold text-2xl uppercase tracking-tight">{req.title}</h4>
-                    <p className="text-lg mt-2 opacity-80 font-medium">{req.desc}</p>
-                  </div>
-                  <CheckCircle2 className="text-[#1a1512] w-8 h-8 shrink-0 mt-4 sm:mt-0 sm:ml-4 group-hover:text-[#F5F2EB] transition-colors" />
-                </motion.div>
-              ))}
-            </div>
-            <p className="text-center mt-12 text-foreground/60 font-bold uppercase tracking-widest text-sm">
-              Membership is free, lifelong, and revocable only by you. No fees. No annoying spam.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {[
+              { tag: "Step 1", title: "Registration Opens", p: "The portal goes live — start submitting your entries right away." },
+              { tag: "Step 2", title: "Last Date for Submission", p: "Submit your reel link before 15th August." },
+              { tag: "Step 3", title: "Jury Evaluation", p: "Every entry is reviewed for creativity, originality, and the message it carries." },
+              { tag: "Step 4", title: "Public Showcase", p: "Shortlisted reels go up on the Community Wall and official handles." },
+              { tag: "Step 5", title: "Winners Announcement", p: "Winners are announced and prizes are distributed." }
+            ].map((step, i) => (
+              <div key={i} className="bg-[#1a1512] border-2 border-[#1a1512] p-6 shadow-[4px_4px_0_0_#F5F2EB]">
+                <div className="h-2 w-full bg-[#C4532B] mb-6 border border-[#1a1512]"></div>
+                <div className="text-xs font-black text-[#C4532B] uppercase tracking-widest mb-2 border border-[#C4532B] px-2 py-1 inline-block bg-[#C4532B]/10">{step.tag}</div>
+                <h4 className="font-bold text-xl uppercase mb-3 leading-tight">{step.title}</h4>
+                <p className="text-sm font-medium opacity-80">{step.p}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Protect the Truth */}
-      <section className="py-24 bg-[#2B6040] border-b border-[#1a1512] text-[#F5F2EB]">
-        <div className="container mx-auto px-4 md:px-12">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-              <ShieldAlert className="w-20 h-20 mb-8 text-[#F5F2EB]" />
-              <h2 className="font-heading text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6 leading-[0.9]">Preserve Evidence.<br/>Defend The Truth.</h2>
-              <p className="text-2xl text-[#F5F2EB]/80 leading-relaxed mb-10 font-medium">
-                Too many authentic stories get lost in the noise or suppressed by algorithms. We are building a secure vault for your raw videos and stories. When you submit your campaign video, it is securely archived to ensure our generation's history is written by us, not for us.
-              </p>
-              <Link href="/register">
-                <Button size="lg" className="rounded-none border-2 border-[#F5F2EB] bg-transparent text-[#F5F2EB] hover:bg-[#F5F2EB] hover:text-[#2B6040] text-xl px-10 py-8 uppercase tracking-widest font-bold">
-                  Submit Your Story <ArrowRight className="ml-3 w-6 h-6" />
-                </Button>
-              </Link>
-            </motion.div>
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-transparent p-8 md:p-12 border-2 border-[#F5F2EB]">
-              <h3 className="text-4xl font-black uppercase tracking-tighter mb-8">How it works</h3>
-              <ul className="space-y-8">
-                <li className="flex items-start">
-                  <div className="w-12 h-12 border-2 border-[#F5F2EB] font-black flex items-center justify-center shrink-0 mr-6 text-xl">1</div>
-                  <div>
-                    <h4 className="text-2xl font-bold uppercase tracking-tight mb-2">Record Reality</h4>
-                    <p className="text-lg text-[#F5F2EB]/80 font-medium">Film your raw, unedited thoughts or experiences.</p>
+      {/* How To + Submit Form */}
+      <section id="submit" className="py-24 px-6 md:px-12 border-b-4 border-[#1a1512] bg-[#F5F2EB]">
+        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16">
+          
+          {/* Left: How to Participate */}
+          <div>
+            <div className="inline-flex items-center rounded-none bg-[#C4532B] text-white px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-[#1a1512] shadow-[2px_2px_0_0_#1a1512] mb-6">How to Participate</div>
+            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight mb-12">
+              Five steps, and your reel is live.
+            </h2>
+            
+            <div className="flex flex-col gap-6">
+              {[
+                { n: "1", title: "Create a reel", p: "Pick a theme from above and shoot your reel — anywhere between 15 and 90 seconds." },
+                { n: "2", title: "Upload it", p: "Post it on Instagram, Facebook, or YouTube Shorts — wherever you already create." },
+                { n: "3", title: "Tag #GenZWithTheNation", p: "The hashtag needs to be in your caption — that's how we track and verify your entry." },
+                { n: "4", title: "Submit your reel link", p: "Fill in your details in the form and paste the link to your reel." },
+                { n: "5", title: "Wait for results", p: "That's it. We'll take it from here — keep an eye out for the winners' announcement." }
+              ].map((step, i) => (
+                <div key={i} className="flex gap-6 border-b-2 border-[#1a1512] pb-6 last:border-0 items-start">
+                  <div className="w-12 h-12 shrink-0 bg-white border-2 border-[#1a1512] shadow-[4px_4px_0_0_#C4532B] flex items-center justify-center font-heading font-black text-2xl">
+                    {step.n}
                   </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-12 h-12 border-2 border-[#F5F2EB] font-black flex items-center justify-center shrink-0 mr-6 text-xl">2</div>
                   <div>
-                    <h4 className="text-2xl font-bold uppercase tracking-tight mb-2">Upload Securely</h4>
-                    <p className="text-lg text-[#F5F2EB]/80 font-medium">Submit your file through our secure portal.</p>
+                    <h4 className="font-bold text-xl uppercase mb-1">{step.title}</h4>
+                    <p className="font-bold opacity-70">{step.p}</p>
                   </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-12 h-12 border-2 border-[#F5F2EB] font-black flex items-center justify-center shrink-0 mr-6 text-xl">3</div>
-                  <div>
-                    <h4 className="text-2xl font-bold uppercase tracking-tight mb-2">Amplify</h4>
-                    <p className="text-lg text-[#F5F2EB]/80 font-medium">We compile and feature verified stories nationwide.</p>
-                  </div>
-                </li>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Submission Form */}
+          <div className="bg-white border-4 border-[#1a1512] p-8 shadow-[8px_8px_0_0_#1a1512]">
+            <h3 className="font-heading text-3xl font-black uppercase mb-2">Submit Your Entry</h3>
+            <p className="font-bold opacity-60 text-sm mb-8">Takes about 2 minutes to fill out</p>
+            
+            <form className="flex flex-col gap-5">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-xs uppercase tracking-widest">Full Name</label>
+                  <input type="text" placeholder="e.g. Ankita Sharma" className="border-2 border-[#1a1512] bg-[#F5F2EB] p-3 font-bold placeholder:opacity-50 focus:outline-none focus:shadow-[4px_4px_0_0_#C4532B]" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-xs uppercase tracking-widest">Mobile Number</label>
+                  <input type="text" placeholder="10-digit number" className="border-2 border-[#1a1512] bg-[#F5F2EB] p-3 font-bold placeholder:opacity-50 focus:outline-none focus:shadow-[4px_4px_0_0_#C4532B]" />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-xs uppercase tracking-widest">City / State</label>
+                  <input type="text" placeholder="e.g. Bhopal, MP" className="border-2 border-[#1a1512] bg-[#F5F2EB] p-3 font-bold placeholder:opacity-50 focus:outline-none focus:shadow-[4px_4px_0_0_#C4532B]" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-xs uppercase tracking-widest">Insta / YT Handle</label>
+                  <input type="text" placeholder="@yourusername" className="border-2 border-[#1a1512] bg-[#F5F2EB] p-3 font-bold placeholder:opacity-50 focus:outline-none focus:shadow-[4px_4px_0_0_#C4532B]" />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="font-bold text-xs uppercase tracking-widest">Reel Link</label>
+                <input type="text" placeholder="Paste your reel's link here" className="border-2 border-[#1a1512] bg-[#F5F2EB] p-3 font-bold placeholder:opacity-50 focus:outline-none focus:shadow-[4px_4px_0_0_#C4532B]" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="font-bold text-xs uppercase tracking-widest">Or upload reel (optional)</label>
+                <div className="border-2 border-[#1a1512] border-dashed bg-white p-4 font-bold text-center text-sm cursor-pointer hover:bg-[#F5F2EB]">
+                  Click to choose a file — MP4, up to 200MB
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start mt-2">
+                <input type="checkbox" className="w-5 h-5 border-2 border-[#1a1512] accent-[#C4532B] mt-1 shrink-0" />
+                <span className="font-bold text-xs leading-relaxed opacity-80">I confirm this reel is my original work, that it includes the #GenZWithTheNation hashtag, and I grant permission for it to be shared on official handles.</span>
+              </div>
+
+              <button type="button" className="bg-[#1a1512] text-white p-4 font-black uppercase tracking-widest mt-4 hover:bg-[#C4532B] transition-colors border-2 border-[#1a1512] shadow-[4px_4px_0_0_#1a1512]">
+                Submit Entry
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Details / Good to Know */}
+      <section className="py-24 px-6 md:px-12 border-b-4 border-[#1a1512] bg-[#1a1512] text-[#F5F2EB]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <div className="inline-flex items-center rounded-none bg-white text-[#1a1512] px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-white shadow-[2px_2px_0_0_#C4532B] mb-6">Good to Know</div>
+            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight">
+              Eligibility, prizes, and ground rules.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="border-4 border-[#F5F2EB] p-8 bg-[#F5F2EB] text-[#1a1512]">
+              <h4 className="font-black uppercase tracking-widest text-lg mb-6 border-b-2 border-[#1a1512] pb-4">Eligibility</h4>
+              <ul className="space-y-4 font-bold">
+                <li className="flex gap-3"><Check className="shrink-0" /> Open to creators aged 13–30</li>
+                <li className="flex gap-3"><Check className="shrink-0" /> Reel duration: 15–90 seconds</li>
+                <li className="flex gap-3"><Check className="shrink-0" /> Hindi, English, or any regional language</li>
+                <li className="flex gap-3"><Check className="shrink-0" /> Original content only — no plagiarism</li>
               </ul>
-            </motion.div>
+            </div>
+            <div className="border-4 border-[#F5F2EB] p-8 bg-[#F5F2EB] text-[#1a1512]">
+              <h4 className="font-black uppercase tracking-widest text-lg mb-6 border-b-2 border-[#1a1512] pb-4">Rewards</h4>
+              <ul className="space-y-4 font-bold">
+                <li className="flex gap-3"><Check className="shrink-0 text-[#2B6040]" /> Top entry: up to ₹51,000 cash</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#2B6040]" /> Runner-up and category prizes</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#2B6040]" /> Certificate for every participant</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#2B6040]" /> Feature on official social handles</li>
+              </ul>
+            </div>
+            <div className="border-4 border-[#F5F2EB] p-8 bg-[#F5F2EB] text-[#1a1512]">
+              <h4 className="font-black uppercase tracking-widest text-lg mb-6 border-b-2 border-[#1a1512] pb-4">Ground Rules</h4>
+              <ul className="space-y-4 font-bold">
+                <li className="flex gap-3"><Check className="shrink-0 text-[#C4532B]" /> One creator may submit multiple entries</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#C4532B]" /> No hate speech, abuse, or offensive language</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#C4532B]" /> #GenZWithTheNation must appear in caption</li>
+                <li className="flex gap-3"><Check className="shrink-0 text-[#C4532B]" /> Decisions of the jury are final</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 bg-[#F5F2EB]">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="font-heading text-6xl md:text-8xl font-black mb-8 uppercase tracking-tighter leading-[0.9]">Ready to make an impact?</h2>
-            <p className="text-3xl text-foreground/80 mb-12 font-medium">
-              Your voice matters. Let's reshape the narrative together.
-            </p>
-            <Link href="/register">
-              <Button size="lg" className="rounded-none border-2 border-[#1a1512] bg-[#1a1512] text-[#F5F2EB] hover:bg-[#C4532B] hover:border-[#C4532B] text-2xl px-12 py-10 uppercase tracking-widest font-black transition-colors">
-                Start Your Submission <Play className="ml-4 w-8 h-8 fill-current" />
-              </Button>
-            </Link>
-          </motion.div>
+      <section className="py-32 px-6 border-b-4 border-[#1a1512] bg-[#C4532B] text-white text-center relative overflow-hidden">
+        {/* Abstract Background Element */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center">
+          <div className="inline-flex items-center rounded-none bg-[#1a1512] text-white px-4 py-1 text-xs font-black tracking-widest uppercase border-2 border-white shadow-[2px_2px_0_0_#1a1512] mb-8">Independence Day Edition</div>
+          <h2 className="font-heading text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[1] mb-8">
+            This Independence Day,<br/>show your love for your country.
+          </h2>
+          <p className="text-xl md:text-2xl font-bold opacity-90 max-w-2xl mb-12">
+            Make a reel. Say what's on your mind. And win a cash prize — with nothing but your own creativity.
+          </p>
+          <a href="#submit" className="bg-[#1a1512] text-white px-10 py-6 border-4 border-white shadow-[8px_8px_0_0_#1a1512] hover:shadow-[0_0_0_0_#1a1512] hover:translate-x-2 hover:translate-y-2 transition-all font-black uppercase text-xl md:text-2xl flex items-center justify-center gap-4 mb-16">
+            Submit Your Reel Now <ArrowRight strokeWidth={3} className="w-8 h-8" />
+          </a>
+
+          <div className="font-heading text-[6vw] font-black uppercase tracking-tighter opacity-20 leading-none">
+            #GenZWithTheNation
+          </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-[#1a1512]/90 backdrop-blur-sm cursor-pointer" onClick={() => setActiveVideo(null)} />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="relative z-10 w-full max-w-[400px] aspect-[9/16] bg-[#1a1512] border-4 border-[#F5F2EB] rounded-3xl overflow-hidden shadow-[12px_12px_0_0_#F5F2EB]"
+          >
+            <button onClick={() => setActiveVideo(null)} className="absolute top-4 right-4 z-30 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center transition-colors shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <video src={activeVideo} className="absolute inset-0 w-full h-full object-cover" autoPlay loop controls playsInline />
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

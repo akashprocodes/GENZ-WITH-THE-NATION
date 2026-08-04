@@ -1,25 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { PopupModal } from "@/components/PopupModal";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const bricolage = Bricolage_Grotesque({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"], 
   variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["700", "800", "800"], // Use thick weights
+  weight: ["300", "400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
   title: "GenZWithTheNation",
   description: "Beyond Stereotypes. Beyond Labels. A creator-led awareness campaign.",
 };
-
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -29,13 +25,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background font-sans text-foreground flex flex-col selection:bg-primary selection:text-white">
+      <body className="font-sans min-h-screen bg-background text-foreground flex flex-col">
         <Navbar />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-grow pt-16">
+          {children}
+        </main>
         <Footer />
+        <PopupModal />
       </body>
     </html>
   );
