@@ -114,19 +114,7 @@ export default function Home() {
             </a>
           </motion.div>
 
-          {/* Minimal Stats */}
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex gap-16 mt-20 pt-12 w-full justify-center">
-            {[
-              { label: "Entries", value: "12K+" },
-              { label: "States", value: "28" },
-              { label: "Prize Pool", value: "₹51K" }
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <span className="text-4xl font-medium tracking-tight text-[#1A1A1A]">{stat.value}</span>
-                <span className="text-xs font-medium tracking-widest uppercase text-[#1A1A1A]/50 mt-2">{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
+
         </div>
       </section>
 
