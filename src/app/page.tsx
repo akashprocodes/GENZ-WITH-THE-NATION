@@ -91,11 +91,11 @@ export default function Home() {
             </span>
           </motion.h1>
 
-          <motion.p variants={fadeIn} className="text-xl md:text-2xl font-light text-[#1A1A1A]/70 max-w-2xl mb-12 leading-relaxed">
+          <motion.p variants={fadeIn} className="text-xl md:text-2xl font-light text-[#1A1A1A]/70 max-w-2xl mb-12 pb-[50px] leading-relaxed">
             A national movement empowering the next generation to voice their vision for the country. Join thousands of creators across India.
           </motion.p>
 
-          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-6 items-center">
+          <motion.div variants={fadeIn} className="flex flex-col gap-2 items-center">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
               
               {/* Expanding Circle Background (Indian Flag) */}
@@ -112,9 +112,28 @@ export default function Home() {
               {/* Text */}
               <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Registration Form</span>
             </a>
+
+            <Link href="/submit" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
+              
+              {/* Expanding Circle Background (Indian Flag) */}
+              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+              
+              {/* Initial Dark Circle */}
+              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+
+              {/* Icon Container */}
+              <span className="relative flex items-center justify-center w-12 h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10">
+                <Upload className="w-5 h-5 group-hover:-translate-y-1 group-hover:scale-110 transition-all duration-500" />
+              </span>
+              
+              {/* Text */}
+              <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Submit reel</span>
+            </Link>
           </motion.div>
 
-
+          <motion.p variants={fadeIn} className="mt-8 pb-[20px] text-[11px] md:text-xs font-medium text-[#1A1A1A]/50 max-w-lg uppercase tracking-wider leading-relaxed">
+            <span className="text-red-500">* Disclaimer:</span> Reels will be valid only if GenzWithNation is added as a collaborator on Facebook and Instagram.
+          </motion.p>
         </div>
       </section>
 
@@ -125,14 +144,8 @@ export default function Home() {
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="inline-block"
         >
-          <span className="mx-6">✦ CELEBRATING INDEPENDENCE DAY</span>
-          <span className="mx-6">✦ CALLING ALL CREATORS</span>
-          <span className="mx-6">✦ GET OFFICIALLY FEATURED</span>
-          <span className="mx-6">✦ NATIONWIDE SHOWCASE</span>
-          <span className="mx-6">✦ CELEBRATING INDEPENDENCE DAY</span>
-          <span className="mx-6">✦ CALLING ALL CREATORS</span>
-          <span className="mx-6">✦ GET OFFICIALLY FEATURED</span>
-          <span className="mx-6">✦ NATIONWIDE SHOWCASE</span>
+          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 15 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
+          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 15 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
         </motion.div>
       </div>
 
@@ -311,8 +324,8 @@ export default function Home() {
               },
               { 
                 icon: <Award className="w-5 h-5" />, 
-                title: "Win cash prizes", 
-                points: ["₹51,000 total prize pool", "Rewards for top entries", "Financial support for creators"],
+                title: "Exciting Rewards", 
+                points: ["Exclusive rewards for winners", "Special recognition for top entries", "Support for emerging creators"],
                 theme: "#FF9933"
               },
               { 
@@ -469,7 +482,7 @@ export default function Home() {
               </h2>
               <div className="flex flex-col gap-8">
                 {[
-                  { n: "1", title: "Create a reel", p: "Pick a theme from above and shoot your reel — anywhere between 15 and 90 seconds." },
+                  { n: "1", title: "Create a reel", p: "Pick a theme from above and shoot your reel — anywhere between 30 and 60 seconds." },
                   { n: "2", title: "Upload it", p: "Post it on Instagram, Facebook, or YouTube Shorts — wherever you already create." },
                   { n: "3", title: "Tag #GenZWithTheNation", p: "The hashtag needs to be in your caption — that's how we track and verify your entry." },
                   { n: "4", title: "Submit your reel link", p: "Fill in your details in the form and paste the link to your reel." },
@@ -494,7 +507,7 @@ export default function Home() {
             {/* Right: Poster Image */}
             <div className="bg-white rounded-3xl shadow-xl shadow-[#1A1A1A]/5 border border-[#1A1A1A]/5 overflow-hidden flex items-center justify-center p-2 md:p-4">
               <img 
-                src="/campaign-poster.jpg" 
+                src="/final-poster.jpg" 
                 alt="Gen Z With The Nation Poster" 
                 className="w-full h-auto object-cover rounded-2xl" 
               />
@@ -508,7 +521,7 @@ export default function Home() {
           <div className="mb-16">
             <div className="inline-flex items-center rounded-full bg-[#1A1A1A]/5 text-[#1A1A1A] px-4 py-1 text-xs font-medium tracking-widest uppercase mb-6">Good to Know</div>
             <h2 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-tight text-[#1A1A1A]">
-              Eligibility, prizes, and ground rules.
+              Eligibility, rewards, and ground rules.
             </h2>
           </div>
 
@@ -517,7 +530,7 @@ export default function Home() {
               <h4 className="font-medium uppercase tracking-widest text-sm mb-6 border-b border-[#1A1A1A]/10 pb-4 text-[#1A1A1A]">Eligibility</h4>
               <ul className="space-y-4 font-light text-[#1A1A1A]/70 text-base">
                 <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Open to creators aged 13–30</li>
-                <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Reel duration: 15–90 seconds</li>
+                <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Reel duration: 30–60 seconds</li>
                 <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Hindi, English, or any regional language</li>
                 <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Original content only — no plagiarism</li>
               </ul>
@@ -525,8 +538,6 @@ export default function Home() {
             <div className="bg-[#FAF9F6] rounded-3xl p-8 border border-[#1A1A1A]/5 shadow-sm">
               <h4 className="font-medium uppercase tracking-widest text-sm mb-6 border-b border-[#1A1A1A]/10 pb-4 text-[#1A1A1A]">Rewards</h4>
               <ul className="space-y-4 font-light text-[#1A1A1A]/70 text-base">
-                <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Top entry: up to ₹51,000 cash</li>
-                <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Runner-up and category prizes</li>
                 <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Certificate for every participant</li>
                 <li className="flex gap-3"><Check className="shrink-0 w-5 h-5 text-[#3A5F45]" /> Feature on official social handles</li>
               </ul>
