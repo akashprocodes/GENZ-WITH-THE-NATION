@@ -567,10 +567,10 @@ export default function Home() {
             <span className="text-white">show your love for your country.</span>
           </h2>
           <p className="text-lg md:text-xl font-light max-w-2xl mb-12 text-white/80 leading-relaxed">
-            Make a reel. Say what's on your mind. And win a cash prize — with nothing but your own creativity.
+            Make a reel. Say what's on your mind. And win exciting rewards — with nothing but your own creativity.
           </p>
-          <a href="#submit" className="bg-white text-[#3A5F45] px-10 py-5 rounded-full hover:bg-[#FAF9F6] hover:-translate-y-1 transition-all duration-300 font-medium tracking-wide text-lg shadow-xl shadow-black/10 flex items-center justify-center gap-3">
-            Submit Your Reel Now <ArrowRight className="w-5 h-5" />
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer" className="bg-white text-[#3A5F45] px-10 py-5 rounded-full hover:bg-[#FAF9F6] hover:-translate-y-1 transition-all duration-300 font-medium tracking-wide text-lg shadow-xl shadow-black/10 flex items-center justify-center gap-3">
+            Registration Form <ArrowRight className="w-5 h-5" />
           </a>
         </div>
       </section>
