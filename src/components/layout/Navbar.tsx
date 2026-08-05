@@ -10,13 +10,12 @@ export function Navbar() {
         </Link>
         <div className="hidden md:flex gap-12 items-center">
           <Link href="/" className="hover:line-through transition-all">Home</Link>
-          <Link href="/about" className="hover:line-through transition-all">Manifesto</Link>
-          <Link href="/contact" className="hover:line-through transition-all">Connect</Link>
+          <Link href="/manifesto" className="hover:line-through transition-all">Manifesto</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/register">
+          <Link href="/submit">
             <Button variant="outline" size="sm" className="rounded-none border border-[#1a1512] bg-transparent text-[#1a1512] hover:bg-[#1a1512] hover:text-white uppercase tracking-widest text-xs h-9 px-6 transition-colors shadow-none">
-              Join Now
+              Submit
             </Button>
           </Link>
         </div>

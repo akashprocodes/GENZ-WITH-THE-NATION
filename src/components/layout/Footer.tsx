@@ -16,9 +16,9 @@ export function Footer() {
         <div>
           <h4 className="font-bold mb-4">The Movement</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><Link href="/about" className="hover:text-primary transition-colors">Our Vision</Link></li>
-            <li><Link href="/about#manifesto" className="hover:text-primary transition-colors">Manifesto</Link></li>
-            <li><Link href="/register" className="hover:text-primary transition-colors">Join the Campaign</Link></li>
+            <li><Link href="/" className="hover:text-primary transition-colors">Our Vision</Link></li>
+            <li><Link href="/manifesto" className="hover:text-primary transition-colors">Manifesto</Link></li>
+            <li><Link href="/submit" className="hover:text-primary transition-colors">Submit</Link></li>
           </ul>
         </div>
 
@@ -26,8 +26,8 @@ export function Footer() {
           <h4 className="font-bold mb-4">Get Involved</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li><Link href="/#eligibility" className="hover:text-primary transition-colors">Eligibility</Link></li>
-            <li><Link href="/contact" className="hover:text-primary transition-colors">Volunteer</Link></li>
-            <li><Link href="/contact" className="hover:text-primary transition-colors">Press Releases</Link></li>
+            <li><Link href="/submit" className="hover:text-primary transition-colors">Volunteer</Link></li>
+            <li><Link href="/submit" className="hover:text-primary transition-colors">Press Releases</Link></li>
           </ul>
         </div>
 
