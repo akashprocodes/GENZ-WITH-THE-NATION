@@ -96,7 +96,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-6 items-center">
-            <a href="#submit" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
               
               {/* Expanding Circle Background (Indian Flag) */}
               <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
@@ -110,7 +110,7 @@ export default function Home() {
               </span>
               
               {/* Text */}
-              <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Submit Your Reel</span>
+              <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Registration Form</span>
             </a>
           </motion.div>
 
