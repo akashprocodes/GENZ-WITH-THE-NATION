@@ -127,12 +127,10 @@ export default function Home() {
         >
           <span className="mx-6">✦ CELEBRATING INDEPENDENCE DAY</span>
           <span className="mx-6">✦ CALLING ALL CREATORS</span>
-          <span className="mx-6">✦ ₹11,000 PRIZE POOL</span>
           <span className="mx-6">✦ GET OFFICIALLY FEATURED</span>
           <span className="mx-6">✦ NATIONWIDE SHOWCASE</span>
           <span className="mx-6">✦ CELEBRATING INDEPENDENCE DAY</span>
           <span className="mx-6">✦ CALLING ALL CREATORS</span>
-          <span className="mx-6">✦ ₹51,000 PRIZE POOL</span>
           <span className="mx-6">✦ GET OFFICIALLY FEATURED</span>
           <span className="mx-6">✦ NATIONWIDE SHOWCASE</span>
         </motion.div>
