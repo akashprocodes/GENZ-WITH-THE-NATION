@@ -16,6 +16,7 @@ export interface IStorageMetadata {
   filename: string;
   mimeType: string;
   fileSize: number;
+  origin?: string;
 }
 
 export interface IVerifiedUpload {
@@ -47,7 +48,9 @@ import { Submission, SubmissionStatus } from './api.types';
 export interface ISubmissionRecord {
   name: string;
   email: string;
-  phone?: string;
+  mobile: string;
+  cityState: string;
+  socialHandle: string;
   driveFileUrl: string;
   fileSizeBytes: number;
   status: SubmissionStatus;

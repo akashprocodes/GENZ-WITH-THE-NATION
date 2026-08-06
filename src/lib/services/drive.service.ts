@@ -25,26 +25,42 @@ class DriveService implements IStorageProvider {
       
       const authClient = GoogleAuthProvider.getClient();
       
-      // We must use authClient.request to hit the /upload endpoint directly 
-      // because the googleapis client library obscures the Location header
-      // in its wrapped methods for resumable uploads.
-      const response = await authClient.request({
-        url: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable',
+      const { token } = await authClient.getAccessToken();
+
+      if (!token) {
+        throw new StorageError('Failed to retrieve access token from Google Auth Provider.');
+      }
+
+      // Use native fetch to bypass Gaxios which is stripping the Location header
+      // Add the Origin header to tell Google Drive to allow CORS on the subsequent PUT request
+      const fetchHeaders: any = {
+        'Authorization': `Bearer ${token}`,
+        'X-Upload-Content-Type': metadata.mimeType,
+        'X-Upload-Content-Length': metadata.fileSize.toString(),
+        'Content-Type': 'application/json',
+      };
+      
+      if (metadata.origin) {
+        fetchHeaders['Origin'] = metadata.origin;
+      }
+
+      const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable', {
         method: 'POST',
-        data: {
+        headers: fetchHeaders,
+        body: JSON.stringify({
           name: metadata.filename,
           parents: [env.GOOGLE_DRIVE_FOLDER_ID],
           mimeType: metadata.mimeType,
-        },
-        headers: {
-          'X-Upload-Content-Type': metadata.mimeType,
-          'X-Upload-Content-Length': metadata.fileSize.toString(),
-          'Content-Type': 'application/json',
-        },
+        })
       });
 
-      const uploadUrl = response.headers.location;
+      const uploadUrl = response.headers.get('location');
       
+      logger.info('Drive API Response for Session', { 
+        status: response.status, 
+        uploadUrl: !!uploadUrl 
+      });
+
       if (!uploadUrl || typeof uploadUrl !== 'string') {
         throw new StorageError('Google Drive did not return a resumable upload location header.');
       }

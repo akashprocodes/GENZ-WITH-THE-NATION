@@ -33,17 +33,18 @@ class SheetsService implements IDatabaseProvider {
       const timestamp = new Date().toISOString();
 
       // Step 1: Append row with empty ID
-      // Columns: ID, Timestamp, Name, Email, Phone, Drive File URL, File Size Bytes, Status, Moderator Notes
+      // Columns: ID, Timestamp, Name, Email, Mobile, City/State, Social Handle, Drive File URL, File Size Bytes, Status
       const rowData = [
         '', // Placeholder for ID
         timestamp,
         data.name,
         data.email,
-        data.phone || '',
+        data.mobile,
+        data.cityState,
+        data.socialHandle,
         data.driveFileUrl,
         data.fileSizeBytes,
-        data.status,
-        data.moderatorNotes || ''
+        data.status
       ];
 
       const appendResponse = await sheets.spreadsheets.values.append({

@@ -30,7 +30,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Delegate business logic to Storage Provider
-    const uploadUrl = await StorageServiceProvider.createUploadSession({ filename, mimeType, fileSize });
+    const origin = req.headers.get('origin') || 'http://localhost:3000';
+    const uploadUrl = await StorageServiceProvider.createUploadSession({ filename, mimeType, fileSize, origin });
 
     return NextResponse.json({
       success: true,

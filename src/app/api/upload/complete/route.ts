@@ -27,7 +27,9 @@ export async function POST(req: NextRequest) {
     const submission = await DatabaseServiceProvider.createSubmission({
       name: user.name,
       email: user.email,
-      phone: user.phone,
+      mobile: user.mobile,
+      cityState: user.cityState,
+      socialHandle: user.socialHandle,
       driveFileUrl: verifiedUpload.webViewLink || `https://drive.google.com/file/d/${fileId}/view`,
       fileSizeBytes: verifiedUpload.size,
       status: 'PENDING_REVIEW',
