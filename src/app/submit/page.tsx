@@ -295,7 +295,7 @@ export default function SubmitPage() {
                       value={socialHandle}
                       onChange={e => setSocialHandle(e.target.value)}
                       disabled={status === 'SUBMITTING' || status === 'UPLOADING'}
-                      placeholder="INSTAGRAM / FACEBOOK HANDLE"
+                      placeholder="SOCIAL MEDIA PROFILE LINK"
                       className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
                     />
                   </div>
