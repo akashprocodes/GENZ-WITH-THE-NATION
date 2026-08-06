@@ -15,6 +15,7 @@ const stagger = {
 
 export default function Home() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [hoveredTheme, setHoveredTheme] = useState<number | null>(null);
   
   // Typewriter effect state
@@ -95,27 +96,34 @@ export default function Home() {
             A national movement empowering the next generation to voice their vision for the country. Join thousands of creators across India.
           </motion.p>
 
-          <motion.div variants={fadeIn} className="flex justify-center mt-4">
+          <motion.div variants={fadeIn} className="flex flex-col gap-3 items-center mt-4">
             <Link 
               href="/submit" 
-              className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#E5E5E5] text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1"
+              className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#E5E5E5] text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1 w-full sm:w-auto"
             >
-              {/* Expanding Circle Background (Indian Flag) */}
               <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
-              
-              {/* Initial Dark Circle */}
               <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
-
-              {/* Icon Container */}
               <span className="relative flex items-center justify-center w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10 shrink-0">
                 <Video className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" />
               </span>
-              
-              {/* Text */}
               <span className="relative ml-4 sm:ml-5 font-serif font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[11px] sm:text-[13px] text-[#1A1A1A] z-10 transition-colors duration-500">
                 Registration Form
               </span>
             </Link>
+
+            <button 
+              onClick={() => setIsSubmitModalOpen(true)}
+              className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#E5E5E5] text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1 w-full sm:w-auto"
+            >
+              <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+              <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+              <span className="relative flex items-center justify-center w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10 shrink-0">
+                <Upload className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-1 group-hover:scale-110 transition-all duration-500" />
+              </span>
+              <span className="relative ml-4 sm:ml-5 font-serif font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[11px] sm:text-[13px] text-[#1A1A1A] z-10 transition-colors duration-500">
+                Submit Reel
+              </span>
+            </button>
           </motion.div>
 
           <motion.p variants={fadeIn} className="mt-8 pb-[20px] text-[11px] md:text-xs font-medium text-[#1A1A1A]/50 max-w-lg uppercase tracking-wider leading-relaxed">
@@ -397,6 +405,26 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+
+          {/* Disclaimer Box */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-16 max-w-4xl mx-auto">
+            <div className="bg-white border border-red-100/50 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-5 shadow-[0_8px_30px_rgb(255,0,0,0.04)] relative overflow-hidden group">
+              {/* Soft red glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0 border border-red-100 relative z-10">
+                <ShieldAlert className="w-6 h-6 text-red-500" />
+              </div>
+              
+              <div className="text-center md:text-left relative z-10 pt-1">
+                <h4 className="font-bold text-[#1A1A1A] mb-2 tracking-widest uppercase text-xs">Important Disclaimer</h4>
+                <p className="text-[#1A1A1A]/80 text-[15px] leading-relaxed font-medium">
+                  Reels will be considered valid <span className="text-red-500 font-bold">only if</span> <span className="bg-[#1A1A1A]/5 px-2 py-0.5 rounded text-[#1A1A1A]">@genzwithnation</span> is added as a collaborator on Facebook and Instagram.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
@@ -579,6 +607,57 @@ export default function Home() {
           </motion.div>
         </div>
       )}
+      {/* Submit Reel Coming Soon Modal */}
+      <AnimatePresence>
+        {isSubmitModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-white/80 backdrop-blur-md cursor-pointer" 
+              onClick={() => setIsSubmitModalOpen(false)} 
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full max-w-[600px] bg-[#FAF9F6] border border-[#1A1A1A]/10 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden p-10 md:p-14 flex flex-col items-center text-center"
+            >
+              <button 
+                onClick={() => setIsSubmitModalOpen(false)} 
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white border border-[#1A1A1A]/10 text-[#1A1A1A]/50 hover:text-[#1A1A1A] hover:bg-black/5 flex items-center justify-center transition-all"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+
+              <div className="w-20 h-20 mb-8 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center">
+                <Clock className="w-10 h-10 text-[#3A5F45]" />
+              </div>
+
+              <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4 text-[#1A1A1A]">
+                Submissions Open <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-[#1A1A1A] to-[#138808]">August 8</span>
+              </h1>
+              
+              <p className="text-base md:text-lg font-light text-[#1A1A1A]/70 mb-8 leading-relaxed">
+                Get your creative gears turning. The official portal for submitting your Independence Day reel will go live on August 8.
+              </p>
+
+              <button 
+                onClick={() => setIsSubmitModalOpen(false)}
+                className="inline-flex items-center px-8 py-4 rounded-full bg-[#1A1A1A] text-white hover:bg-black hover:-translate-y-1 transition-all duration-300 font-medium tracking-widest text-sm uppercase shadow-xl shadow-black/10"
+              >
+                Close Window
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

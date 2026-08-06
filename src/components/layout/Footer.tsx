@@ -40,8 +40,11 @@ export function Footer() {
         </div>
       </div>
       
-      <div className="container mx-auto px-4 pt-8 border-t border-border/40 text-center text-xs text-muted-foreground">
-        <div>&copy; {new Date().getFullYear()} GenZWithTheNation Campaign. Headquartered wherever the WiFi works.</div>
+      <div className="container mx-auto px-4 pt-8 border-t border-border/40 text-xs text-muted-foreground flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>&copy; {new Date().getFullYear()} GenZWithTheNation Campaign</div>
+        <Link href="/terms" className="hover:text-[#1A1A1A] transition-colors">
+          Terms & Conditions
+        </Link>
       </div>
     </footer>
   );

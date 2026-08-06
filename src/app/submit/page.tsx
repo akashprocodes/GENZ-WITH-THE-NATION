@@ -11,29 +11,29 @@ export default function SubmitPage() {
   const [mobile, setMobile] = useState('');
   const [cityState, setCityState] = useState('');
   const [socialHandle, setSocialHandle] = useState('');
-  
+
   const [status, setStatus] = useState<string>('IDLE');
   const [errorMessage, setErrorMessage] = useState('');
-  
+
   const submitForm = async () => {
     if (!name || !email || !mobile || !cityState || !socialHandle) {
       setErrorMessage('Please fill in all fields.');
       return;
     }
-    
+
     setStatus('SUBMITTING');
     setErrorMessage('');
-    
+
     try {
       const res = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, mobile, cityState, socialHandle })
       });
-      
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Submission failed');
-      
+
       setStatus('COMPLETED');
     } catch (err: any) {
       setErrorMessage(err.message);
@@ -45,7 +45,7 @@ export default function SubmitPage() {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
-  
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -53,11 +53,11 @@ export default function SubmitPage() {
 
   return (
     <div className="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col lg:flex-row bg-[#FAF9F6] font-sans selection:bg-[#FF9933] selection:text-white">
-      
+
       {/* Left Panel - Branding & Motivation */}
       <div className="lg:w-[45%] lg:h-full bg-[#1A1A1A] relative flex flex-col justify-between overflow-hidden text-white p-8 md:p-12 lg:p-16">
         {/* Background Effects */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.15] mix-blend-overlay"
           style={{ backgroundImage: "url('/bg-india.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
         />
@@ -77,12 +77,12 @@ export default function SubmitPage() {
               <span className="w-2 h-2 rounded-full bg-[#FF9933] animate-pulse"></span>
               Registration Open
             </motion.div>
-            
+
             <motion.h1 variants={fadeIn} className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1]">
               Become the <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808] italic font-light">Voice of India.</span>
             </motion.h1>
-            
+
             <motion.p variants={fadeIn} className="text-white/60 text-lg md:text-xl font-light max-w-md leading-relaxed mb-12">
               Join the largest Gen-Z creator movement this Independence Day. Your story could inspire the nation.
             </motion.p>
@@ -113,15 +113,15 @@ export default function SubmitPage() {
       <div className="lg:w-[55%] lg:h-full lg:overflow-y-auto flex items-center justify-center p-6 md:p-12 lg:p-16 relative scrollbar-hide bg-[#F2F0E9]">
         {/* Subtle grid pattern for texture (matching screenshot) */}
         <div className="absolute inset-0 opacity-[0.25] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#808080 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-        
+
         {/* Richer Background Gradients for depth on the edges */}
         <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-[#FF9933]/10 rounded-full blur-[80px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#138808]/10 rounded-full blur-[80px] pointer-events-none"></div>
 
         <div className="w-full max-w-xl relative z-10">
-          
+
           {/* Form Container (No white card) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -133,9 +133,9 @@ export default function SubmitPage() {
                 Fill in your information to secure your spot. Make sure the details match your social accounts.
               </p>
             </div>
-            
+
             {status === 'COMPLETED' ? (
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -156,13 +156,13 @@ export default function SubmitPage() {
                 </Link>
               </motion.div>
             ) : (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex flex-col gap-6">
-                  
+
                   {/* 2-Column Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {[
@@ -175,14 +175,14 @@ export default function SubmitPage() {
                         <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#1A1A1A] transition-colors pointer-events-none flex items-center">
                           {field.icon}
                         </div>
-                        <input 
-                          type={field.type} 
+                        <input
+                          type={field.type}
                           id={field.id}
-                          value={field.value} 
-                          onChange={e => field.setter(e.target.value)} 
-                          disabled={status === 'SUBMITTING'} 
+                          value={field.value}
+                          onChange={e => field.setter(e.target.value)}
+                          disabled={status === 'SUBMITTING'}
                           placeholder={field.label}
-                          className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]" 
+                          className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
                         />
                       </div>
                     ))}
@@ -193,14 +193,14 @@ export default function SubmitPage() {
                     <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#1A1A1A] transition-colors pointer-events-none flex items-center">
                       <AtSign className="w-[18px] h-[18px]" />
                     </div>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       id="social"
-                      value={socialHandle} 
-                      onChange={e => setSocialHandle(e.target.value)} 
-                      disabled={status === 'SUBMITTING'} 
+                      value={socialHandle}
+                      onChange={e => setSocialHandle(e.target.value)}
+                      disabled={status === 'SUBMITTING'}
                       placeholder="INSTAGRAM / FACEBOOK HANDLE"
-                      className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]" 
+                      className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
                     />
                   </div>
 
@@ -211,8 +211,8 @@ export default function SubmitPage() {
                     </motion.div>
                   )}
 
-                  <button 
-                    onClick={submitForm} 
+                  <button
+                    onClick={submitForm}
                     disabled={status === 'SUBMITTING' || !name || !email || !mobile || !cityState || !socialHandle}
                     className="w-full flex items-center justify-center py-[20px] rounded-full bg-[#1A1A1A] text-white font-bold tracking-[0.15em] uppercase text-[12px] hover:bg-black hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-lg shadow-black/10"
                   >
@@ -228,7 +228,7 @@ export default function SubmitPage() {
                       </span>
                     )}
                   </button>
-                  
+
                 </div>
               </motion.div>
             )}
