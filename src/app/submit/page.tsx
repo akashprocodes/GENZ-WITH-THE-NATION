@@ -48,6 +48,12 @@ export default function SubmitPage() {
         return;
       }
 
+      if (!file) {
+        setErrorMessage('Please select a video file.');
+        setStatus('FAILED');
+        return;
+      }
+
       // 1. Get Resumable Upload URL
       const sessionRes = await fetch('/api/upload/session', {
         method: 'POST',
