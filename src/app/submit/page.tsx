@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign, Instagram, Facebook, Youtube, Link2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign, Camera, Globe, PlaySquare, Link2 } from 'lucide-react';
 
 export default function SubmitPage() {
   const [name, setName] = useState('');
@@ -289,9 +289,9 @@ export default function SubmitPage() {
                   <div className="flex flex-col gap-3">
                     <div className="flex gap-2 p-1 bg-white border border-[#1A1A1A]/10 rounded-full w-fit shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
                       {[
-                        { id: 'Instagram', icon: <Instagram className="w-4 h-4" /> },
-                        { id: 'Facebook', icon: <Facebook className="w-4 h-4" /> },
-                        { id: 'YouTube', icon: <Youtube className="w-4 h-4" /> },
+                        { id: 'Instagram', icon: <Camera className="w-4 h-4" /> },
+                        { id: 'Facebook', icon: <Globe className="w-4 h-4" /> },
+                        { id: 'YouTube', icon: <PlaySquare className="w-4 h-4" /> },
                         { id: 'Other', icon: <Link2 className="w-4 h-4" /> }
                       ].map(plat => (
                         <button
