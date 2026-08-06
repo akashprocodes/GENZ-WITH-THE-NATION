@@ -17,13 +17,15 @@ export default function SubmitPage() {
   const [status, setStatus] = useState<string>('IDLE');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const isVideoUploadEnabled = process.env.NEXT_PUBLIC_ENABLE_VIDEO_UPLOAD === 'true';
+
   const submitForm = async () => {
-    if (!name || !email || !mobile || !cityState || !socialHandle || !file) {
-      setErrorMessage('Please fill in all fields and select a video.');
+    if (!name || !email || !mobile || !cityState || !socialHandle || (isVideoUploadEnabled && !file)) {
+      setErrorMessage(isVideoUploadEnabled ? 'Please fill in all fields and select a video.' : 'Please fill in all fields.');
       return;
     }
 
-    if (file.size > 300 * 1024 * 1024) {
+    if (isVideoUploadEnabled && file && file.size > 300 * 1024 * 1024) {
       setErrorMessage('Video file is too large. Maximum size is 300MB.');
       return;
     }
@@ -33,6 +35,19 @@ export default function SubmitPage() {
     setUploadProgress(0);
 
     try {
+      if (!isVideoUploadEnabled) {
+        setStatus('SUBMITTING');
+        const completeRes = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, mobile, cityState, socialHandle })
+        });
+        const completeData = await completeRes.json();
+        if (!completeRes.ok) throw new Error(completeData.message || 'Failed to complete registration');
+        setStatus('COMPLETED');
+        return;
+      }
+
       // 1. Get Resumable Upload URL
       const sessionRes = await fetch('/api/upload/session', {
         method: 'POST',
@@ -266,7 +281,8 @@ export default function SubmitPage() {
                   </div>
 
                   {/* File Upload Field */}
-                  <div className="relative group">
+                  {isVideoUploadEnabled && (
+                    <div className="relative group">
                     <input
                       type="file"
                       id="video"
@@ -292,6 +308,7 @@ export default function SubmitPage() {
                       </div>
                     </label>
                   </div>
+                  )}
 
                   {/* Progress Bar */}
                   {status === 'UPLOADING' && (
@@ -321,7 +338,7 @@ export default function SubmitPage() {
 
                   <button
                     onClick={submitForm}
-                    disabled={status === 'SUBMITTING' || status === 'UPLOADING' || !name || !email || !mobile || !cityState || !socialHandle || !file}
+                    disabled={status === 'SUBMITTING' || status === 'UPLOADING' || !name || !email || !mobile || !cityState || !socialHandle || (isVideoUploadEnabled && !file)}
                     className="w-full flex items-center justify-center py-[20px] rounded-full bg-[#1A1A1A] text-white font-bold tracking-[0.15em] uppercase text-[12px] hover:bg-black hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-lg shadow-black/10"
                   >
                     {status === 'SUBMITTING' ? (
