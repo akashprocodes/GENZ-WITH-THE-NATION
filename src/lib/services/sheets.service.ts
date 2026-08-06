@@ -123,27 +123,24 @@ class SheetsService implements IDatabaseProvider {
       const sheets = google.sheets({ version: 'v4', auth: authClient });
       const timestamp = new Date().toISOString();
       
-      // Get current row count to generate a sequential ID
-      const getResponse = await sheets.spreadsheets.values.get({
-        spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.SHEET_NAME}!A:A`,
-      });
-      const currentRows = getResponse.data.values ? getResponse.data.values.length : 1;
-      const submissionId = currentRows; // 1, 2, 3... (since row 1 is header)
-
+      // Step 1: Append row with empty ID to maintain exact column alignment
+      // Columns: ID, Timestamp, Name, Email, Mobile, City/State, Social Handle, Drive File URL, File Size Bytes, Status
       const rowData = [
-        submissionId, // Sequential Submission ID
+        '', // Placeholder for ID
+        timestamp,
         data.name,
         data.email,
         data.mobile,
         data.cityState,
         data.socialHandle,
-        timestamp
+        '', // Drive File URL (Empty for simple submission)
+        '', // File Size Bytes (Empty for simple submission)
+        'REGISTERED_NO_VIDEO' // Status
       ];
 
       const appendResponse = await sheets.spreadsheets.values.append({
         spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.SHEET_NAME}!A:G`,
+        range: `${SHEET_CONSTANTS.SHEET_NAME}!A:J`,
         valueInputOption: 'USER_ENTERED',
         insertDataOption: 'INSERT_ROWS',
         requestBody: {
@@ -156,9 +153,31 @@ class SheetsService implements IDatabaseProvider {
         throw new DatabaseError('Failed to retrieve updated range from Database Provider.');
       }
 
-      logger.info('Temporary database append complete.', { updatedRange });
+      // Step 2: Extract row number from range (e.g., "Submissions!A42:J42")
+      const rowMatch = updatedRange.match(/!A(\d+):/);
+      if (!rowMatch || !rowMatch[1]) {
+        throw new DatabaseError('Could not parse row number from Database Provider response.');
+      }
+      
+      const rowNumber = parseInt(rowMatch[1], 10);
+      
+      // Step 3: Generate Deterministic ID (Assuming Row 1 is header)
+      const sequenceNumber = rowNumber - 1;
+      const submissionId = `GZN-26-${String(sequenceNumber).padStart(5, '0')}`;
 
-      return { success: true, timestamp };
+      // Step 4: Update the inserted row with the generated ID
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: env.GOOGLE_SHEET_ID,
+        range: `${SHEET_CONSTANTS.SHEET_NAME}!A${rowNumber}`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [[submissionId]],
+        },
+      });
+
+      logger.info('Temporary database append complete.', { updatedRange, submissionId });
+
+      return { success: true, timestamp, id: submissionId };
 
     } catch (error: any) {
       logger.error('Database operation failed in simple submission', { error: error.message, stack: error.stack });
