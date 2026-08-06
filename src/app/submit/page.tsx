@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign, Instagram, Facebook, Youtube, Link2 } from 'lucide-react';
 
 export default function SubmitPage() {
   const [name, setName] = useState('');
@@ -11,6 +11,7 @@ export default function SubmitPage() {
   const [mobile, setMobile] = useState('');
   const [cityState, setCityState] = useState('');
   const [socialHandle, setSocialHandle] = useState('');
+  const [socialPlatform, setSocialPlatform] = useState('Instagram');
   const [file, setFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
 
@@ -54,7 +55,7 @@ export default function SubmitPage() {
         const completeRes = await fetch('/api/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, mobile, cityState, socialHandle })
+        body: JSON.stringify({ name, email, mobile, cityState, socialHandle: `${socialPlatform}: ${socialHandle}` })
         });
         const completeData = await completeRes.json();
         if (!completeRes.ok) throw new Error(completeData.message || 'Failed to complete registration');
@@ -123,7 +124,7 @@ export default function SubmitPage() {
         body: JSON.stringify({
           fileId,
           metadata: { filename: file.name, mimeType: file.type, fileSize: file.size },
-          user: { name, email, mobile, cityState, socialHandle }
+          user: { name, email, mobile, cityState, socialHandle: `${socialPlatform}: ${socialHandle}` }
         })
       });
 
@@ -284,20 +285,41 @@ export default function SubmitPage() {
                     ))}
                   </div>
 
-                  {/* Full width for Social Handle */}
-                  <div className="relative group">
-                    <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#1A1A1A] transition-colors pointer-events-none flex items-center">
-                      <AtSign className="w-[18px] h-[18px]" />
+                  {/* Platform Selector & Handle */}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex gap-2 p-1 bg-white border border-[#1A1A1A]/10 rounded-full w-fit shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+                      {[
+                        { id: 'Instagram', icon: <Instagram className="w-4 h-4" /> },
+                        { id: 'Facebook', icon: <Facebook className="w-4 h-4" /> },
+                        { id: 'YouTube', icon: <Youtube className="w-4 h-4" /> },
+                        { id: 'Other', icon: <Link2 className="w-4 h-4" /> }
+                      ].map(plat => (
+                        <button
+                          key={plat.id}
+                          type="button"
+                          onClick={() => setSocialPlatform(plat.id)}
+                          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all ${socialPlatform === plat.id ? 'bg-[#1A1A1A] text-white shadow-md' : 'text-gray-500 hover:bg-[#1A1A1A]/5'}`}
+                        >
+                          {plat.icon}
+                          <span className={plat.id === 'Other' ? 'hidden sm:inline' : 'hidden md:inline'}>{plat.id}</span>
+                        </button>
+                      ))}
                     </div>
-                    <input
-                      type="text"
-                      id="social"
-                      value={socialHandle}
-                      onChange={e => setSocialHandle(e.target.value)}
-                      disabled={status === 'SUBMITTING' || status === 'UPLOADING'}
-                      placeholder="SOCIAL MEDIA PROFILE LINK"
-                      className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
-                    />
+
+                    <div className="relative group">
+                      <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#1A1A1A] transition-colors pointer-events-none flex items-center">
+                        <AtSign className="w-[18px] h-[18px]" />
+                      </div>
+                      <input
+                        type="text"
+                        id="social"
+                        value={socialHandle}
+                        onChange={e => setSocialHandle(e.target.value)}
+                        disabled={status === 'SUBMITTING' || status === 'UPLOADING'}
+                        placeholder={`${socialPlatform.toUpperCase()} PROFILE LINK`}
+                        className="w-full bg-white border border-[#1A1A1A]/10 rounded-full pl-[52px] pr-6 py-[18px] text-[12px] font-bold tracking-[0.1em] text-[#1A1A1A] placeholder-gray-500 focus:bg-white focus:border-[#1A1A1A]/30 focus:ring-4 focus:ring-black/5 outline-none transition-all disabled:opacity-50 hover:border-[#1A1A1A]/20 shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
+                      />
+                    </div>
                   </div>
 
                   {/* File Upload Field */}
