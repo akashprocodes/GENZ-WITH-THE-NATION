@@ -224,9 +224,16 @@ export default function SubmitPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full sm:p-4"
           >
-            <div className="mb-10">
-              <h2 className="text-3xl sm:text-[2rem] font-bold text-[#1A1A1A] tracking-tight mb-4 font-serif">Creator Details</h2>
-              <p className="text-[#1A1A1A]/70 text-[13px] leading-relaxed font-medium">
+            <div className="mb-10 text-center">
+              <div className="inline-flex items-center justify-center gap-3 mb-4">
+                <span className="w-6 h-[2px] bg-gradient-to-r from-transparent to-[#FF9933] rounded-full"></span>
+                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/50">Step 1</span>
+                <span className="w-6 h-[2px] bg-gradient-to-l from-transparent to-[#138808] rounded-full"></span>
+              </div>
+              <h2 className="text-3xl sm:text-[2.25rem] font-bold text-[#1A1A1A] tracking-tight mb-4 font-serif">
+                Creator Details
+              </h2>
+              <p className="text-[#1A1A1A]/70 text-[13px] leading-relaxed font-medium max-w-md mx-auto">
                 Fill in your information to secure your spot. Make sure the details match your social accounts.
               </p>
             </div>
@@ -287,7 +294,7 @@ export default function SubmitPage() {
 
                   {/* Platform Selector & Handle */}
                   <div className="flex flex-col gap-3">
-                    <div className="flex gap-2 p-1 bg-white border border-[#1A1A1A]/10 rounded-full w-fit shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+                    <div className="flex gap-2 p-1 bg-white border border-[#1A1A1A]/10 rounded-full w-fit mx-auto shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
                       {[
                         { id: 'Instagram', icon: <Camera className="w-4 h-4" /> },
                         { id: 'Facebook', icon: <Globe className="w-4 h-4" /> },

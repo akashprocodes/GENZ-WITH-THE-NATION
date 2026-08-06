@@ -138,16 +138,17 @@ export default function About() {
                 ))}
               </div>
               
-              <div className="mt-12">
-                <Link href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="w-full rounded-full text-lg px-8 py-8 bg-[#C4532B] hover:bg-[#A94320] text-white shadow-xl shadow-[#C4532B]/20 hover:-translate-y-1 transition-all duration-300 font-medium tracking-wide">
-                    Participate Now <ArrowRight className="ml-3 w-5 h-5" />
-                  </Button>
-                </Link>
-              </div>
             </motion.div>
-
           </div>
+
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-20 max-w-sm mx-auto">
+            <Link href="/submit">
+              <Button size="lg" className="w-full rounded-full text-lg px-8 py-8 bg-[#C4532B] hover:bg-[#A94320] text-white shadow-xl shadow-[#C4532B]/20 hover:-translate-y-1 transition-all duration-300 font-medium tracking-wide flex justify-center items-center cursor-pointer">
+                Participate Now <ArrowRight className="ml-3 w-5 h-5" />
+              </Button>
+            </Link>
+          </motion.div>
+
         </div>
       </section>
     </div>
