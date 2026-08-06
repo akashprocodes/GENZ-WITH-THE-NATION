@@ -25,6 +25,20 @@ export default function SubmitPage() {
       return;
     }
 
+    // Email Validation (Standard Regex)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    // Mobile Validation (Exactly 10 digits, Indian standard)
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobile.replace(/[\s-]/g, ''))) {
+      setErrorMessage('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
     if (isVideoUploadEnabled && file && file.size > 300 * 1024 * 1024) {
       setErrorMessage('Video file is too large. Maximum size is 300MB.');
       return;
