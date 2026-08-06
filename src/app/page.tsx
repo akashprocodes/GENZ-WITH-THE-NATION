@@ -95,39 +95,26 @@ export default function Home() {
             A national movement empowering the next generation to voice their vision for the country. Join thousands of creators across India.
           </motion.p>
 
-          <motion.div variants={fadeIn} className="flex flex-col gap-2 items-center">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
-              
+          <motion.div variants={fadeIn} className="flex justify-center mt-4">
+            <Link 
+              href="/submit" 
+              className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#E5E5E5] text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1"
+            >
               {/* Expanding Circle Background (Indian Flag) */}
-              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+              <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
               
               {/* Initial Dark Circle */}
-              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
+              <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
 
               {/* Icon Container */}
-              <span className="relative flex items-center justify-center w-12 h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10">
-                <Video className="w-5 h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" />
+              <span className="relative flex items-center justify-center w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10 shrink-0">
+                <Video className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500" />
               </span>
               
               {/* Text */}
-              <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Registration Form</span>
-            </a>
-
-            <Link href="/submit" className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#1A1A1A]/15 text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-[0_8px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1">
-              
-              {/* Expanding Circle Background (Indian Flag) */}
-              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
-              
-              {/* Initial Dark Circle */}
-              <span className="absolute left-1.5 top-1.5 w-12 h-12 rounded-full bg-[#1A1A1A] group-hover:scale-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
-
-              {/* Icon Container */}
-              <span className="relative flex items-center justify-center w-12 h-12 rounded-full text-white group-hover:text-[#1A1A1A] transition-colors duration-500 z-10">
-                <Upload className="w-5 h-5 group-hover:-translate-y-1 group-hover:scale-110 transition-all duration-500" />
+              <span className="relative ml-4 sm:ml-5 font-serif font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[11px] sm:text-[13px] text-[#1A1A1A] z-10 transition-colors duration-500">
+                Registration Form
               </span>
-              
-              {/* Text */}
-              <span className="relative ml-4 sm:ml-5 font-semibold tracking-[0.2em] uppercase text-[12px] sm:text-[13px] opacity-90 z-10 group-hover:text-[#1A1A1A] transition-colors duration-500">Submit reel</span>
             </Link>
           </motion.div>
 
@@ -569,9 +556,9 @@ export default function Home() {
           <p className="text-lg md:text-xl font-light max-w-2xl mb-12 text-white/80 leading-relaxed">
             Make a reel. Say what's on your mind. And win exciting rewards — with nothing but your own creativity.
           </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBa2SEnZuHNhiLX8olq3PEfrgh7aFNVmgUpHuPJFRnJ_adng/viewform" target="_blank" rel="noopener noreferrer" className="bg-white text-[#3A5F45] px-10 py-5 rounded-full hover:bg-[#FAF9F6] hover:-translate-y-1 transition-all duration-300 font-medium tracking-wide text-lg shadow-xl shadow-black/10 flex items-center justify-center gap-3">
+          <Link href="/submit" className="bg-white text-[#3A5F45] px-10 py-4 rounded-full hover:bg-[#FAF9F6] hover:-translate-y-1 transition-all duration-300 font-bold tracking-[0.15em] text-sm uppercase shadow-xl shadow-black/10 flex items-center justify-center gap-3 mt-4">
             Registration Form <ArrowRight className="w-5 h-5" />
-          </a>
+          </Link>
         </div>
       </section>
 
