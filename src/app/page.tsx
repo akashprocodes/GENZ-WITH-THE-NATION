@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play, CheckCircle2, Upload, Video, Star, Target, Zap, Clock, Users, ShieldAlert, Award, FileText, Check, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Play, CheckCircle2, Upload, Video, Star, Target, Zap, Clock, Users, ShieldAlert, Award, FileText, Check, ArrowUpRight, Hand } from "lucide-react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -14,8 +14,6 @@ const stagger = {
 };
 
 export default function Home() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [hoveredTheme, setHoveredTheme] = useState<number | null>(null);
 
   // Typewriter effect state
@@ -58,7 +56,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-hidden bg-white text-[#1a1512] font-sans selection:bg-[#C4532B] selection:text-white">
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] pt-16 pb-20 px-6 md:px-12 flex items-center justify-center overflow-hidden bg-[#FAF9F6]">
+      <section className="relative h-[100dvh] pt-16 px-6 md:px-12 flex items-center justify-center overflow-hidden bg-[#FAF9F6]">
         {/* Background Sketch Image */}
         <div
           className="absolute inset-0 z-0 opacity-80 mix-blend-multiply pointer-events-none"
@@ -111,8 +109,8 @@ export default function Home() {
               </span>
             </Link>
 
-            <button
-              onClick={() => setIsSubmitModalOpen(true)}
+            <Link
+              href="/upload"
               className="group relative inline-flex items-center p-1.5 pr-8 rounded-full bg-[#FAF9F6] border border-[#E5E5E5] text-[#1A1A1A] hover:border-transparent overflow-hidden transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(255,153,51,0.25)] hover:-translate-y-1 w-full sm:w-auto"
             >
               <span className="absolute left-1.5 top-1.5 w-[42px] h-[42px] sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-[15] origin-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></span>
@@ -121,9 +119,9 @@ export default function Home() {
                 <Upload className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-1 group-hover:scale-110 transition-all duration-500" />
               </span>
               <span className="relative ml-4 sm:ml-5 font-serif font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[11px] sm:text-[13px] text-[#1A1A1A] z-10 transition-colors duration-500">
-                Submit Reel
+                Upload Video
               </span>
-            </button>
+            </Link>
           </motion.div>
 
           <motion.p variants={fadeIn} className="mt-8 pb-[20px] text-[11px] md:text-xs font-medium text-[#1A1A1A]/50 max-w-lg uppercase tracking-wider leading-relaxed">
@@ -664,75 +662,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      {/* Video Modal */}
-      {activeVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-md cursor-pointer" onClick={() => setActiveVideo(null)} />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative z-10 w-full max-w-[400px] aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl shadow-black/20 ring-1 ring-black/5"
-          >
-            <button onClick={() => setActiveVideo(null)} className="absolute top-4 right-4 z-30 w-10 h-10 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center transition-colors shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-            <video src={activeVideo} className="absolute inset-0 w-full h-full object-cover" autoPlay loop controls playsInline />
-          </motion.div>
-        </div>
-      )}
-      {/* Submit Reel Coming Soon Modal */}
-      <AnimatePresence>
-        {isSubmitModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-white/80 backdrop-blur-md cursor-pointer"
-              onClick={() => setIsSubmitModalOpen(false)}
-            />
-
-            {/* Modal Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full max-w-[600px] bg-[#FAF9F6] border border-[#1A1A1A]/10 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden p-10 md:p-14 flex flex-col items-center text-center"
-            >
-              <button
-                onClick={() => setIsSubmitModalOpen(false)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white border border-[#1A1A1A]/10 text-[#1A1A1A]/50 hover:text-[#1A1A1A] hover:bg-black/5 flex items-center justify-center transition-all"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-
-              <div className="w-20 h-20 mb-8 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center">
-                <Clock className="w-10 h-10 text-[#3A5F45]" />
-              </div>
-
-              <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4 text-[#1A1A1A]">
-                Submissions Open <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-[#1A1A1A] to-[#138808]">August 8</span>
-              </h1>
-
-              <p className="text-base md:text-lg font-light text-[#1A1A1A]/70 mb-8 leading-relaxed">
-                Get your creative gears turning. The official portal for submitting your Independence Day reel will go live on August 8.
-              </p>
-
-              <button
-                onClick={() => setIsSubmitModalOpen(false)}
-                className="inline-flex items-center px-8 py-4 rounded-full bg-[#1A1A1A] text-white hover:bg-black hover:-translate-y-1 transition-all duration-300 font-medium tracking-widest text-sm uppercase shadow-xl shadow-black/10"
-              >
-                Close Window
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

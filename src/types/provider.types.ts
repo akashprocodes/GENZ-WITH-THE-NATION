@@ -58,6 +58,16 @@ export interface ISubmissionRecord {
   requestId?: string;
 }
 
+export interface IVideoSubmission {
+  name: string;
+  email: string;
+  mobile: string;
+  socialUrl: string;
+  driveFileUrl: string;
+  fileSizeBytes: number;
+  status: string;
+}
+
 export interface ISimpleSubmission {
   name: string;
   email: string;
@@ -77,4 +87,9 @@ export interface IDatabaseProvider {
    * Temporary method for handling form-only submissions without file uploads.
    */
   createSimpleSubmission?(data: ISimpleSubmission): Promise<any>;
+
+  /**
+   * Method for handling video-only submissions.
+   */
+  createVideoSubmission?(data: IVideoSubmission): Promise<any>;
 }

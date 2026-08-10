@@ -184,6 +184,74 @@ class SheetsService implements IDatabaseProvider {
       throw new ProviderApiError(`Database operation failed: ${error.message || 'Unknown error'}`, error.status || 502);
     }
   }
+
+  /**
+   * Method for handling video-only submissions.
+   * Maps exactly to: ID, Mobile Number, Timestamp, Drive File URL, File Size Bytes, Status
+   */
+  public async createVideoSubmission(data: import('@/types/provider.types').IVideoSubmission): Promise<any> {
+    try {
+      logger.info('Connecting to Google Sheets Provider for video submission...', { mobile: data.mobile });
+      
+      const authClient = GoogleAuthProvider.getClient();
+      const sheets = google.sheets({ version: 'v4', auth: authClient });
+      const timestamp = new Date().toISOString();
+      
+      const rowData = [
+        '', // Placeholder for ID
+        data.name,
+        data.email,
+        data.mobile,
+        data.socialUrl,
+        timestamp,
+        data.driveFileUrl,
+        data.fileSizeBytes,
+        data.status
+      ];
+
+      const appendResponse = await sheets.spreadsheets.values.append({
+        spreadsheetId: env.GOOGLE_SHEET_ID,
+        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!A:I`,
+        valueInputOption: 'USER_ENTERED',
+        insertDataOption: 'INSERT_ROWS',
+        requestBody: {
+          values: [rowData],
+        },
+      });
+
+      const updatedRange = appendResponse.data.updates?.updatedRange;
+      if (!updatedRange) {
+        throw new DatabaseError('Failed to retrieve updated range from Database Provider.');
+      }
+
+      const rowMatch = updatedRange.match(/!A(\d+)/);
+      if (!rowMatch || !rowMatch[1]) {
+        throw new DatabaseError('Could not parse row number from Database Provider response.');
+      }
+      
+      const rowNumber = parseInt(rowMatch[1], 10);
+      const sequenceNumber = rowNumber - 1;
+      const submissionId = `VID-26-${String(sequenceNumber).padStart(5, '0')}`;
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: env.GOOGLE_SHEET_ID,
+        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!A${rowNumber}`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [[submissionId]],
+        },
+      });
+
+      logger.info('Video database append complete.', { updatedRange, submissionId });
+
+      return { success: true, timestamp, id: submissionId };
+
+    } catch (error: any) {
+      logger.error('Database operation failed in video submission', { error: error.message, stack: error.stack });
+      if (error instanceof DatabaseError) throw error;
+      throw new ProviderApiError(`Database operation failed: ${error.message || 'Unknown error'}`, error.status || 502);
+    }
+  }
 }
 
 export const DatabaseServiceProvider = new SheetsService();

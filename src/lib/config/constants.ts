@@ -22,6 +22,7 @@ export const UPLOAD_CONSTANTS = {
 
 export const SHEET_CONSTANTS = {
   SHEET_NAME: 'Sheet1', // Default tab name in Google Sheets
+  VIDEO_SHEET_NAME: 'VideoSubmissions',
 };
 
 export const GOOGLE_CONSTANTS = {
