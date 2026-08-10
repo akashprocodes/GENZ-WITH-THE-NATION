@@ -27,6 +27,6 @@ export async function POST(req: NextRequest) {
 
   } catch (error: any) {
     logger.error('Failed to process temporary submission', { error: error.message });
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ success: false, message: `Server Error: ${error.message}` }, { status: 500 });
   }
-}
+} 

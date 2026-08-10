@@ -152,10 +152,10 @@ class SheetsService implements IDatabaseProvider {
         throw new DatabaseError('Failed to retrieve updated range from Database Provider.');
       }
 
-      // Step 2: Extract row number from range (e.g., "Submissions!A42:J42")
-      const rowMatch = updatedRange.match(/!A(\d+):/);
+      // Step 2: Extract row number from range (e.g., "Submissions!A42:J42" or "Sheet1!A42")
+      const rowMatch = updatedRange.match(/!A(\d+)/);
       if (!rowMatch || !rowMatch[1]) {
-        throw new DatabaseError('Could not parse row number from Database Provider response.');
+        throw new DatabaseError(`Could not parse row number from Database Provider response. Range: ${updatedRange}`);
       }
       
       const rowNumber = parseInt(rowMatch[1], 10);
