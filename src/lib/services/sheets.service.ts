@@ -139,7 +139,7 @@ class SheetsService implements IDatabaseProvider {
 
       const appendResponse = await sheets.spreadsheets.values.append({
         spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.SHEET_NAME}!A:J`,
+        range: `${SHEET_CONSTANTS.SHEET_NAME}!A:A`, // Force append to start at column A of a new row
         valueInputOption: 'USER_ENTERED',
         insertDataOption: 'INSERT_ROWS',
         requestBody: {
@@ -152,8 +152,11 @@ class SheetsService implements IDatabaseProvider {
         throw new DatabaseError('Failed to retrieve updated range from Database Provider.');
       }
 
-      // Step 2: Extract row number from range (e.g., "Submissions!A42:J42" or "Sheet1!A42")
-      const rowMatch = updatedRange.match(/!A(\d+)/);
+      // Step 2: Extract row number safely (e.g. from "Sheet1!A92:J92" -> "A92")
+      const rangeAfterSheet = updatedRange.split('!')[1] || updatedRange;
+      const firstCell = rangeAfterSheet.split(':')[0]; // e.g. "A92"
+      
+      const rowMatch = firstCell.match(/[A-Z]+(\d+)/);
       if (!rowMatch || !rowMatch[1]) {
         throw new DatabaseError(`Could not parse row number from Database Provider response. Range: ${updatedRange}`);
       }
@@ -167,7 +170,7 @@ class SheetsService implements IDatabaseProvider {
       // Step 4: Update the inserted row with the generated ID
       await sheets.spreadsheets.values.update({
         spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.SHEET_NAME}!A${rowNumber}`,
+        range: `${SHEET_CONSTANTS.SHEET_NAME}!${firstCell}`, // Update exactly where the append started
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: [[submissionId]],
@@ -211,7 +214,7 @@ class SheetsService implements IDatabaseProvider {
 
       const appendResponse = await sheets.spreadsheets.values.append({
         spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!A:I`,
+        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!A:A`, // Force append to start at column A
         valueInputOption: 'USER_ENTERED',
         insertDataOption: 'INSERT_ROWS',
         requestBody: {
@@ -224,9 +227,12 @@ class SheetsService implements IDatabaseProvider {
         throw new DatabaseError('Failed to retrieve updated range from Database Provider.');
       }
 
-      const rowMatch = updatedRange.match(/!A(\d+)/);
+      const rangeAfterSheet = updatedRange.split('!')[1] || updatedRange;
+      const firstCell = rangeAfterSheet.split(':')[0]; // e.g. "A92"
+
+      const rowMatch = firstCell.match(/[A-Z]+(\d+)/);
       if (!rowMatch || !rowMatch[1]) {
-        throw new DatabaseError('Could not parse row number from Database Provider response.');
+        throw new DatabaseError(`Could not parse row number from Database Provider response. Range: ${updatedRange}`);
       }
       
       const rowNumber = parseInt(rowMatch[1], 10);
@@ -235,7 +241,7 @@ class SheetsService implements IDatabaseProvider {
 
       await sheets.spreadsheets.values.update({
         spreadsheetId: env.GOOGLE_SHEET_ID,
-        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!A${rowNumber}`,
+        range: `${SHEET_CONSTANTS.VIDEO_SHEET_NAME}!${firstCell}`,
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: [[submissionId]],
