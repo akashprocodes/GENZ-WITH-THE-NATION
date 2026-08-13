@@ -65,7 +65,7 @@ export default function Home() {
         {/* Soft bottom gradient to blend into next section */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#FAF9F6] to-transparent z-0"></div>
 
-        <div className="max-w-[1000px] w-full mx-auto flex flex-col items-center text-center relative z-10 mt-8">
+        <div className="max-w-[1000px] w-full mx-auto flex flex-col items-center text-center relative z-10 -mt-4 md:-mt-8">
           <motion.div
             variants={fadeIn}
             className="group inline-flex items-center gap-2.5 rounded-full bg-white/50 backdrop-blur-md border border-white/40 px-5 py-2 text-sm font-medium tracking-wide mb-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:bg-white/80 hover:shadow-[0_4px_20px_rgb(0,0,0,0.06)] hover:border-white/80 transition-all duration-500 cursor-default"
@@ -90,7 +90,7 @@ export default function Home() {
             </span>
           </motion.h1>
 
-          <motion.p variants={fadeIn} className="text-xl md:text-2xl font-light text-[#1A1A1A]/70 max-w-2xl mb-12 pb-[50px] leading-relaxed">
+          <motion.p variants={fadeIn} className="text-xl md:text-2xl font-light text-[#1A1A1A]/70 max-w-2xl mb-6 pb-0 leading-relaxed">
             A national movement empowering the next generation to voice their vision for the country. Join thousands of creators across India.
           </motion.p>
 
@@ -124,9 +124,26 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <motion.p variants={fadeIn} className="mt-8 pb-[20px] text-[11px] md:text-xs font-medium text-[#1A1A1A]/50 max-w-lg uppercase tracking-wider leading-relaxed">
+          <motion.p variants={fadeIn} className="mt-4 pb-2 text-[11px] md:text-xs font-medium text-[#1A1A1A]/50 max-w-lg uppercase tracking-wider leading-relaxed">
             <span className="text-red-500">* Disclaimer:</span> Reels will be valid only if GenzWithNation is added as a collaborator on Facebook and Instagram.
           </motion.p>
+
+          {/* Sponsors Section */}
+          <motion.div variants={fadeIn} className="mt-4 md:mt-6 w-full flex flex-col items-center gap-3 pb-0">
+            <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/80">Sponsored By</span>
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 px-4">
+              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
+                <img src="/images/sponsors/sponsor2.jpg" alt="Jai Hind Bro" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+              </div>
+              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
+                <img src="/images/sponsors/sponsor1.jpg" alt="Aayudh" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+              </div>
+              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
+                <img src="/images/sponsors/sponsor4.png" alt="HLBS" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+              </div>
+              <img src="/images/sponsors/sponsor3.png" alt="PrintBajar" className="h-7 md:h-10 w-auto object-contain mix-blend-multiply" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
