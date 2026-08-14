@@ -189,8 +189,8 @@ export default function Home() {
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="inline-block"
         >
-          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 15 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
-          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 15 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
+          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 30 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
+          <span className="mx-6">🇮🇳 15 August Independence Day Reels Competition • 🎥 Create a Patriotic Reel • 📲 Mandatory: Tag @genzwithnation on Instagram • 🏆 Win Exciting Cash Prizes & Certificates • 📅 Last Date: 30 August 2026 • 🚀 Register Now • ❤️ #GENZWithTheNation</span>
         </motion.div>
       </div>
 
@@ -496,7 +496,7 @@ export default function Home() {
 
             {[
               { tag: "Phase 1", title: "Registration Opens", p: "The portal goes live — start submitting your entries right away.", theme: "border-[#FF9933]", text: "text-[#FF9933]", bg: "bg-[#FF9933]" },
-              { tag: "Phase 2", title: "Last Date for Submission", p: "Submit your reel link before 15th August.", theme: "border-[#138808]", text: "text-[#138808]", bg: "bg-[#138808]" },
+              { tag: "Phase 2", title: "Last Date for Submission", p: "Submit your reel link before 30th August.", theme: "border-[#138808]", text: "text-[#138808]", bg: "bg-[#138808]" },
               { tag: "Phase 3", title: "Jury Evaluation", p: "Every entry is reviewed for creativity, originality, and the message it carries.", theme: "border-[#000080]", text: "text-[#000080]", bg: "bg-[#000080]" },
               { tag: "Phase 4", title: "Public Showcase", p: "Shortlisted reels go up on the official handles.", theme: "border-[#FF9933]", text: "text-[#FF9933]", bg: "bg-[#FF9933]" },
               { tag: "Phase 5", title: "Winners Announced", p: "Winners are announced and prizes are distributed.", theme: "border-[#138808]", text: "text-[#138808]", bg: "bg-[#138808]" }

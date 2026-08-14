@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign, Camera, Globe, PlaySquare, Link2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Award, Star, Video, ArrowRight, User, Mail, Phone, MapPin, AtSign, Camera, Globe, PlaySquare, Link2, Calendar } from 'lucide-react';
 
 export default function SubmitPage() {
   const [name, setName] = useState('');
@@ -104,7 +104,8 @@ export default function SubmitPage() {
               {[
                 { icon: <Award className="w-5 h-5 text-[#FF9933]" />, text: "Win Exciting Cash Prizes" },
                 { icon: <Star className="w-5 h-5 text-white" />, text: "National Recognition & Certificates" },
-                { icon: <Video className="w-5 h-5 text-[#138808]" />, text: "Get featured on our platform" }
+                { icon: <Video className="w-5 h-5 text-[#138808]" />, text: "Get featured on our platform" },
+                { icon: <Calendar className="w-5 h-5 text-[#FF9933]" />, text: "Last Date: 30 August" }
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeIn} className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">

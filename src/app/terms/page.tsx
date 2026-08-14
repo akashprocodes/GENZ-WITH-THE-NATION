@@ -61,7 +61,7 @@ export default function TermsPage() {
             <div>
               <h3 className="font-bold text-lg text-[#1A1A1A]">6. Submission Deadline</h3>
               <ul className="list-disc pl-5 mt-2">
-                <li>The reel must be uploaded and submitted <strong>on or before 14 August</strong>. Late entries will not be considered.</li>
+                <li>The reel must be uploaded and submitted <strong>on or before 30 August</strong>. Late entries will not be considered.</li>
               </ul>
             </div>
 
@@ -170,7 +170,7 @@ export default function TermsPage() {
 
             <div>
               <h3 className="font-bold text-lg text-[#1A1A1A]">6. अंतिम तिथि</h3>
-              <p className="mt-2 pl-5">सभी प्रविष्टियाँ <strong>14 अगस्त</strong> तक अपलोड एवं सबमिट कर दी जानी चाहिए। इसके बाद प्राप्त प्रविष्टियाँ स्वीकार नहीं की जाएंगी।</p>
+              <p className="mt-2 pl-5">सभी प्रविष्टियाँ <strong>30 अगस्त</strong> तक अपलोड एवं सबमिट कर दी जानी चाहिए। इसके बाद प्राप्त प्रविष्टियाँ स्वीकार नहीं की जाएंगी।</p>
             </div>
 
             <div>
