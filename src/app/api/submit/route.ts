@@ -29,4 +29,4 @@ export async function POST(req: NextRequest) {
     logger.error('Failed to process temporary submission', { error: error.message });
     return NextResponse.json({ success: false, message: `Server Error: ${error.message}` }, { status: 500 });
   }
-} 
+}  
