@@ -129,20 +129,55 @@ export default function Home() {
           </motion.p>
 
           {/* Sponsors Section */}
-          <motion.div variants={fadeIn} className="mt-4 md:mt-6 w-full flex flex-col items-center gap-3 pb-0">
-            <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/80">Sponsored By</span>
-            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 px-4">
-              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
-                <img src="/images/sponsors/sponsor2.jpg" alt="Jai Hind Bro" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+          <motion.div variants={fadeIn} className="mt-4 md:mt-6 w-full flex flex-col items-center gap-6 pb-0">
+            
+            {/* Main Sponsor */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex items-center gap-3">
+                <div className="h-px w-8 bg-[#1A1A1A]/10"></div>
+                <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/80">Sponsored By</span>
+                <div className="h-px w-8 bg-[#1A1A1A]/10"></div>
               </div>
-              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
-                <img src="/images/sponsors/sponsor1.jpg" alt="Aayudh" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+              <div className="w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center p-2.5 md:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl md:rounded-2xl border border-white/50">
+                <img src="/images/sponsors/sponsor2.jpg" alt="HLBS" className="max-w-full max-h-full object-contain mix-blend-multiply" />
               </div>
-              <div className="w-10 h-10 md:w-16 md:h-16 bg-white flex items-center justify-center p-1 md:p-1.5 shadow-sm">
-                <img src="/images/sponsors/sponsor4.png" alt="HLBS" className="max-w-full max-h-full object-contain mix-blend-multiply" />
-              </div>
-              <img src="/images/sponsors/sponsor3.png" alt="PrintBajar" className="h-7 md:h-10 w-auto object-contain mix-blend-multiply" />
             </div>
+
+            {/* Other Partners */}
+            <div className="flex flex-wrap justify-center items-end gap-3 md:gap-6 px-4 mt-2">
+              
+              {/* Knowledge Partner */}
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center p-2 md:p-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl md:rounded-2xl border border-white/50">
+                  <img src="/images/sponsors/sponsor1.jpg" alt="Aayudh" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm border border-white/60 px-2.5 py-1 rounded-full">
+                  <span className="text-[7px] md:text-[8px] font-bold tracking-[0.15em] uppercase text-[#1A1A1A]/60 block mt-[1px]">Knowledge Partner</span>
+                </div>
+              </div>
+
+              {/* Branding Partner */}
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center p-2 md:p-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl md:rounded-2xl border border-white/50">
+                  <img src="/images/sponsors/sponsor4.png" alt="Jai Hind Bro" className="max-w-full max-h-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm border border-white/60 px-2.5 py-1 rounded-full">
+                  <span className="text-[7px] md:text-[8px] font-bold tracking-[0.15em] uppercase text-[#1A1A1A]/60 block mt-[1px]">Branding Partner</span>
+                </div>
+              </div>
+
+              {/* Printing Partner */}
+              <div className="flex flex-col items-center gap-2">
+                <div className="h-12 md:h-16 flex items-center justify-center">
+                  <img src="/images/sponsors/sponsor3.png" alt="PrintBajar" className="h-7 md:h-10 w-auto object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm border border-white/60 px-2.5 py-1 rounded-full">
+                  <span className="text-[7px] md:text-[8px] font-bold tracking-[0.15em] uppercase text-[#1A1A1A]/60 block mt-[1px]">Printing Partner</span>
+                </div>
+              </div>
+              
+            </div>
+
           </motion.div>
         </div>
       </section>
