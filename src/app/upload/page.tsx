@@ -33,8 +33,8 @@ export default function UploadPage() {
       return;
     }
 
-    if (file && file.size > 300 * 1024 * 1024) {
-      setErrorMessage('Video file is too large. Maximum size is 300MB.');
+    if (file && file.size > 1024 * 1024 * 1024) {
+      setErrorMessage('Video file is too large. Maximum size is 1GB.');
       return;
     }
 
@@ -330,7 +330,7 @@ export default function UploadPage() {
                 <ul className="space-y-4 flex-1">
                   {[
                     { title: "Mobile Verification", desc: "Use the exact mobile number you registered with so we can link your video to your profile." },
-                    { title: "Video Specifications", desc: "Max size: 300MB. Ensure your video is clear and in vertical format (9:16) for reels." },
+                    { title: "Video Specifications", desc: "Max size: 1GB. Ensure your video is clear and in vertical format (9:16) for reels." },
                     { title: "Content Guidelines", desc: "Maintain the decorum of the nation. No offensive or inappropriate content will be accepted." },
                   ].map((item, i) => (
                     <li key={i} className="flex gap-4 group cursor-default">
